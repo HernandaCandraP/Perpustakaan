@@ -3,6 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Abyan/Documents/NetBeansProjects/Perpustakaan/src/backend/Petugas.java</file>
+            <file>file:/C:/Users/Abyan/Documents/NetBeansProjects/Perpustakaan/src/frontend/FormPetugas.java</file>
+=======
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Perpustakan.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/DBHelper.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/frontend/FrmAnggota.java</file>
@@ -11,6 +15,7 @@
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Anggota.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/frontend/FrmBuku.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Buku.java</file>
+>>>>>>> 6b4497226e27bfcf82fcf9d1bac09e10caf6f93f
         </group>
     </open-files>
 </project-private>
