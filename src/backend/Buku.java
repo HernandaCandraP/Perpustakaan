@@ -209,4 +209,12 @@ public class Buku {
     public void setTahun_terbit(int tahun_terbit) {
         this.tahun_terbit = tahun_terbit;
     }
+
+    public Object getTotal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setTotal(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
