@@ -5,9 +5,11 @@
         <group>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Perpustakan.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/DBHelper.java</file>
+            <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/frontend/FrmAnggota.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Kategori.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Peminjaman.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Anggota.java</file>
+            <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/frontend/FrmBuku.java</file>
             <file>file:/E:/Kuliah/Proyek2/Perpustakaan/src/backend/Buku.java</file>
         </group>
     </open-files>
