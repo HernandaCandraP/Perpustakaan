@@ -11,7 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 /**
  *
- * @author ASUS
+ * @author Muhammad Alfarizi
  */
 public class FrmBuku extends javax.swing.JFrame {
 

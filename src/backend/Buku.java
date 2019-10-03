@@ -16,18 +16,19 @@ public class Buku {
     private int idbuku;
     private Kategori kategori= new Kategori();
     private String judul, penerbit, penulis;
-    private int tahun_terbit;
+    private int tahun_terbit, total;
 
     public Buku(){
         
     }
     
-    public Buku(Kategori kategori, String judul, String penerbit, String penulis, int tahun_terbit){
+    public Buku(Kategori kategori, String judul, String penerbit, String penulis, int tahun_terbit, int total){
         this.kategori = kategori;
         this.judul = judul;
         this.penerbit = penerbit;
         this.penulis = penulis;
         this.tahun_terbit = tahun_terbit;
+        this.total = total;
     }
     
     public Buku getById(int id){
@@ -38,6 +39,7 @@ public class Buku {
                 + " b.penerbit AS penerbit, "
                 + " b.penulis AS penulis, "
                 + " b.tahun_terbit AS tahun_terbit, "
+                + " b.total AS total, "
                 + " k.idkategori AS idkategori, "
                 + " k.nama AS nama, "
                 + " k.keterangan AS keterangan "
@@ -56,6 +58,7 @@ public class Buku {
                 buku.setPenerbit(rs.getString("penerbit"));
                 buku.setPenulis(rs.getString("penulis"));
                 buku.setTahun_terbit(rs.getInt("tahun_terbit"));
+                buku.setTotal(rs.getInt("total"));
             }
         } catch(Exception e){
             e.printStackTrace();
@@ -71,6 +74,7 @@ public class Buku {
                 + " b.penerbit AS penerbit, "
                 + " b.penulis AS penulis, "
                 + " b.tahun_terbit AS tahun_terbit, "
+                + " b.total AS total, "
                 + " k.idkategori AS idkategori, "
                 + " k.nama AS nama, "
                 + " k.keterangan AS keterangan "
@@ -88,6 +92,7 @@ public class Buku {
                 buku.setPenerbit(rs.getString("penerbit"));
                 buku.setPenulis(rs.getString("penulis"));
                 buku.setTahun_terbit(rs.getInt("tahun_terbit"));
+                buku.setTotal(rs.getInt("total"));
                 
                 ListBuku.add(buku);
             }
@@ -105,6 +110,7 @@ public class Buku {
                 + " b.penerbit AS penerbit, "
                 + " b.penulis AS penulis, "
                 + " b.tahun_terbit AS tahun_terbit, "
+                + " b.total AS total, "
                 + " k.idkategori AS idkategori, "
                 + " k.nama AS nama, "
                 + " k.keterangan AS keterangan "
@@ -125,6 +131,7 @@ public class Buku {
                 buku.setPenerbit(rs.getString("penerbit"));
                 buku.setPenulis(rs.getString("penulis"));
                 buku.setTahun_terbit(rs.getInt("tahun_terbit"));
+                buku.setTotal(rs.getInt("total"));
                 
                 ListBuku.add(buku);
             }
@@ -136,12 +143,13 @@ public class Buku {
     
     public void save(){
         if(getById(idbuku).getIdbuku() == 0){
-            String SQL = "INSERT INTO buku (judul, idkategori, penulis, penerbit, tahun_terbit) VALUES("
+            String SQL = "INSERT INTO buku (judul, idkategori, penulis, penerbit, tahun_terbit, total) VALUES("
                     +"  '" +this.judul+ "',"
                     +"  '" +this.getKategori().getIdkategori()+ "',"
                     +"  '" +this.penulis+ "',"
                     +"  '" +this.penerbit+ "',"
-                    +"  " +this.tahun_terbit+ ""
+                    +"  " +this.tahun_terbit+ ","
+                    +"  " +this.total+ ""
                     +"  )";
             this.idbuku = DBHelper.insertQueryGetId(SQL);
         }
@@ -151,7 +159,8 @@ public class Buku {
                     +"  idkategori = '" +this.getKategori().getIdkategori()+ "',"
                     +"  penulis = '" +this.penulis+ "',"
                     +"  penerbit = '" +this.penerbit + "',"
-                    +"  tahun_terbit = " +this.tahun_terbit + ""
+                    +"  tahun_terbit = " +this.tahun_terbit + ","
+                    +"  total = " +this.total + ""
                     +"  WHERE idbuku = '" +this.idbuku+ "'";
             DBHelper.executeQuery(SQL);
         }
@@ -210,11 +219,11 @@ public class Buku {
         this.tahun_terbit = tahun_terbit;
     }
 
-    public Object getTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getTotal() {
+        return total;
     }
 
-    public void setTotal(int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setTotal(int total) {
+        this.total = total;
     }
 }
