@@ -250,7 +250,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel6.setFont(new java.awt.Font("Algerian", 1, 36)); // NOI18N
-        jLabel6.setText("PERPUSTAKAAN SMP NEGERI 10 MALANG");
+        jLabel6.setText("PERPUSTAKAAN SMA NEGERI 06 MALANG");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
