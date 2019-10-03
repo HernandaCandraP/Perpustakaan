@@ -89,6 +89,7 @@ public class FrmMenuAwal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Silahkan pilih Anggota / Petugas");
 
         Edit.setText("Quit");
