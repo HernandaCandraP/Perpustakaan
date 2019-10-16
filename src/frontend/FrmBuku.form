@@ -515,7 +515,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Algerian" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PERPUSTAKAAN SMa NEGERI 6 MALANG"/>
+            <Property name="text" type="java.lang.String" value="PERPUSTAKAAN SMA NEGERI 06 MALANG"/>
           </Properties>
         </Component>
       </SubComponents>

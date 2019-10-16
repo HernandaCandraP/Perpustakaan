@@ -239,7 +239,11 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel6.setFont(new java.awt.Font("Algerian", 1, 36)); // NOI18N
+<<<<<<< HEAD
         jLabel6.setText("PERPUSTAKAAN SMa NEGERI 06 MALANG");
+=======
+        jLabel6.setText("PERPUSTAKAAN SMA NEGERI 06 MALANG");
+>>>>>>> refs/remotes/origin/master
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
