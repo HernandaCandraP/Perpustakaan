@@ -125,6 +125,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtusernameActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtusernameKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonLogin">
@@ -138,6 +139,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoginActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jButtonLoginKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtpassword">
@@ -148,6 +150,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpasswordActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtpasswordKeyPressed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

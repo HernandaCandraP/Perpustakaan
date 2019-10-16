@@ -29,13 +29,15 @@ public class FrmPetugas extends javax.swing.JFrame {
         txtNama.setText("");
         txtAlamat.setText("");
         txtTelepon.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
         groupGender.clearSelection();
     }
     
     public void tampilkanData(){
-        String[] kolom = {"ID", "Nama", "Alamat", "Telepon", "Gender"};
+        String[] kolom = {"ID", "Nama", "Alamat", "Telepon", "Gender", "Username", "Password"};
         ArrayList<Petugas> list = new Petugas().getAll();
-        Object rowData[] = new Object[5];
+        Object rowData[] = new Object[7];
         
         tblPetugas.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -45,15 +47,17 @@ public class FrmPetugas extends javax.swing.JFrame {
             rowData[2] = A.getAlamat();
             rowData[3] = A.getTelepon();
             rowData[4] = A.getGender();
+            rowData[5] = A.getUsername();
+            rowData[6] = A.getPassword();
             
             ((DefaultTableModel)tblPetugas.getModel()).addRow(rowData);
         }
     }
     
     public void cari(String keyword){
-        String[] kolom = {"ID", "Nama", "Alamat", "Telepon", "Gender"};
+        String[] kolom = {"ID", "Nama", "Alamat", "Telepon", "Gender", "Username", "Password"};
         ArrayList<Petugas> list = new Petugas().search(keyword);
-        Object rowData[] = new Object[5];
+        Object rowData[] = new Object[7];
         
         tblPetugas.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -63,6 +67,8 @@ public class FrmPetugas extends javax.swing.JFrame {
             rowData[2] = A.getAlamat();
             rowData[3] = A.getTelepon();
             rowData[4] = A.getGender();
+            rowData[5] = A.getUsername();
+            rowData[6] = A.getPassword();
             
             ((DefaultTableModel)tblPetugas.getModel()).addRow(rowData);
         }
@@ -91,7 +97,6 @@ public class FrmPetugas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtIdPetugas = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
-        txtAlamat = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
         btnTambahBaru = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
@@ -108,6 +113,12 @@ public class FrmPetugas extends javax.swing.JFrame {
         rButtonPr = new javax.swing.JRadioButton();
         btnRefresh = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAlamat = new javax.swing.JTextArea();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuHome = new javax.swing.JMenuItem();
@@ -155,13 +166,6 @@ public class FrmPetugas extends javax.swing.JFrame {
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
-            }
-        });
-
-        txtAlamat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtAlamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlamatActionPerformed(evt);
             }
         });
 
@@ -298,6 +302,30 @@ public class FrmPetugas extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel9.setText("Menu Kategori Buku");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Username");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Password");
+
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
+        txtAlamat.setColumns(20);
+        txtAlamat.setRows(5);
+        jScrollPane3.setViewportView(txtAlamat);
+
         jMenu1.setText("Menu");
 
         jMenuHome.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
@@ -383,10 +411,6 @@ public class FrmPetugas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSimpan)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnTambahBaru))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel2)
@@ -398,19 +422,29 @@ public class FrmPetugas extends javax.swing.JFrame {
                                                 .addComponent(jLabel3)
                                                 .addComponent(jLabel4)
                                                 .addComponent(jLabel5))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGap(39, 39, 39)
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(layout.createSequentialGroup()
                                                             .addComponent(rButtonLk)
                                                             .addGap(15, 15, 15)
-                                                            .addComponent(rButtonPr))))
+                                                            .addComponent(rButtonPr))
+                                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGap(44, 44, 44)
-                                                    .addComponent(txtIdPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                    .addComponent(txtIdPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel7)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSimpan)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnTambahBaru))
+                                    .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,16 +478,19 @@ public class FrmPetugas extends javax.swing.JFrame {
                         .addComponent(btnCari)
                         .addComponent(btnRefresh)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -462,12 +499,19 @@ public class FrmPetugas extends javax.swing.JFrame {
                             .addComponent(rButtonPr)
                             .addComponent(rButtonLk)
                             .addComponent(jLabel5))
-                        .addGap(45, 45, 45)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSimpan)
-                            .addComponent(btnTambahBaru)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                            .addComponent(btnTambahBaru))
+                        .addGap(39, 39, 39))))
         );
 
         rButtonLk.setActionCommand("Laki-laki");
@@ -483,10 +527,6 @@ public class FrmPetugas extends javax.swing.JFrame {
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
-
-    private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlamatActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
@@ -507,6 +547,8 @@ public class FrmPetugas extends javax.swing.JFrame {
         A.setNama(txtNama.getText());
         A.setAlamat(txtAlamat.getText());
         A.setTelepon(txtTelepon.getText());
+        A.setUsername(txtUsername.getText());
+        A.setPassword(txtPassword.getText());
         A.setGender(Gender);
         A.save();
         txtIdPetugas.setText(Integer.toString(A.getIdPetugas()));
@@ -553,6 +595,8 @@ public class FrmPetugas extends javax.swing.JFrame {
             } else {
                 rButtonLk.setSelected(true);
             }
+        txtUsername.setText(model.getValueAt(row, 5).toString());
+        txtPassword.setText(model.getValueAt(row, 6).toString());
     }//GEN-LAST:event_tblPetugasMouseClicked
 
     private void txtTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeleponActionPerformed
@@ -623,6 +667,14 @@ public class FrmPetugas extends javax.swing.JFrame {
         tampilkanData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -689,6 +741,8 @@ public class FrmPetugas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuAnggota;
@@ -701,14 +755,17 @@ public class FrmPetugas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rButtonLk;
     private javax.swing.JRadioButton rButtonPr;
     private javax.swing.JTable tblPetugas;
-    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtCari;
     private javax.swing.JTextField txtIdPetugas;
     private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtTelepon;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

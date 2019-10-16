@@ -5,6 +5,7 @@
  */
 package frontend;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.*;
@@ -20,6 +21,29 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+    }
+    
+    public void login(){
+        try {
+            ResultSet rs = DBHelper.selectQuery("SELECT * FROM petugas where username='"+txtusername.getText() + "' and password='"+ txtpassword.getText() +"'");
+            
+            int baris = 0;
+            while (rs.next()) {
+                baris = rs.getRow();
+            }
+            
+            if (baris ==1) {
+                new FrmPeminjaman().setVisible(true);
+                JOptionPane.showMessageDialog(null,"Berhasil Login");
+                dispose();
+            }else {
+                JOptionPane.showMessageDialog(null,"Gagal Login");
+            }
+            
+            
+        } catch (SQLException e) {
+            
+        }
     }
 
     /**
@@ -65,6 +89,11 @@ public class FrmLogin extends javax.swing.JFrame {
                 txtusernameActionPerformed(evt);
             }
         });
+        txtusername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtusernameKeyPressed(evt);
+            }
+        });
 
         jButtonLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/login.png"))); // NOI18N
@@ -73,11 +102,21 @@ public class FrmLogin extends javax.swing.JFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
+        jButtonLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonLoginKeyPressed(evt);
+            }
+        });
 
         txtpassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
+            }
+        });
+        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyPressed(evt);
             }
         });
 
@@ -166,31 +205,33 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-        try {
-            ResultSet rs = DBHelper.selectQuery("SELECT * FROM login where username='"+txtusername.getText() + "' and password='"+ txtpassword.getText() +"'");
-            
-            int baris = 0;
-            while (rs.next()) {
-                baris = rs.getRow();
-            }
-            
-            if (baris ==1) {
-                new FrmPeminjaman().setVisible(true);
-                JOptionPane.showMessageDialog(null,"Berhasil Login");
-                dispose();
-            }else {
-                JOptionPane.showMessageDialog(null,"Gagal Login");
-            }
-            
-            
-        } catch (SQLException e) {
-            
-        } 
+        login();
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_txtpasswordKeyPressed
+
+    private void txtusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_txtusernameKeyPressed
+
+    private void jButtonLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonLoginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_jButtonLoginKeyPressed
 
     /**
      * @param args the command line arguments

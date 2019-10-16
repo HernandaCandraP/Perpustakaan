@@ -13,7 +13,7 @@ import java.sql.*;
 public class Petugas {
     private int idPetugas;
     private String nama, alamat, gender;
-    private String telepon;
+    private String telepon, username, password;
     
     public Petugas(){
         
@@ -25,6 +25,23 @@ public class Petugas {
         this.telepon = telepon;
         this.gender = gender;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     
     public int getIdPetugas() {
         return idPetugas;
@@ -79,6 +96,8 @@ public class Petugas {
                 kat.setAlamat(rs.getString("alamat"));
                 kat.setTelepon(rs.getString("telepon"));
                 kat.setGender(rs.getString("gender"));
+                kat.setUsername(rs.getString("username"));
+                kat.setPassword(rs.getString("password"));
             }
         }
         catch(Exception e){
@@ -103,6 +122,8 @@ public class Petugas {
                 kat.setAlamat(rs.getString("alamat"));
                 kat.setTelepon(rs.getString("telepon"));
                 kat.setGender(rs.getString("gender"));
+                kat.setUsername(rs.getString("username"));
+                kat.setPassword(rs.getString("password"));
                 
                 ListPetugas.add(kat);
             }
@@ -119,8 +140,7 @@ public class Petugas {
         String sql = "SELECT * FROM petugas WHERE"
                 + " nama LIKE '%" + keyword + "%'"
                 + " OR alamat LIKE '%" +keyword+ "%' "
-                + " OR gender LIKE '%" +keyword+ "%' "
-                + " OR telepon LIKE '%" +keyword+ "%' ";
+                + " OR gender LIKE '%" +keyword+ "%' ";
         
         ResultSet rs = DBHelper.selectQuery(sql);
         
@@ -132,6 +152,8 @@ public class Petugas {
                 kat.setAlamat(rs.getString("alamat"));
                 kat.setTelepon(rs.getString("telepon"));
                 kat.setGender(rs.getString("gender"));
+                kat.setUsername(rs.getString("username"));
+                kat.setPassword(rs.getString("password"));
                 
                 ListPetugas.add(kat);
             }
@@ -144,11 +166,13 @@ public class Petugas {
     
     public void save(){
         if(getById(idPetugas).getIdPetugas() == 0){
-            String SQL = "INSERT INTO petugas (nama, alamat, telepon, gender) VALUES("
+            String SQL = "INSERT INTO petugas (nama, alamat, telepon, gender, username, password) VALUES("
                     +"  '" +this.nama+ "',"
                     +"  '" +this.alamat+ "',"
                     +"  '" +this.telepon+ "',"
-                    +"  '" +this.gender+ "'"
+                    +"  '" +this.gender+ "',"
+                    +"  '" +this.username+ "',"
+                    +"  '" +this.password+ "'"
                     +"  )";
             this.idPetugas = DBHelper.insertQueryGetId(SQL);
         }
@@ -157,7 +181,9 @@ public class Petugas {
                     +"  nama = '" +this.nama+ "',"
                     +"  alamat = '" +this.alamat+ "',"
                     +"  telepon = '" +this.telepon+ "',"
-                    +"  gender = '" +this.gender+ "'"
+                    +"  gender = '" +this.gender+ "',"
+                    +"  username = '" +this.username+ "',"
+                    +"  password = '" +this.password+ "'"
                     +"  WHERE idPetugas = '" +this.idPetugas+ "'";
             DBHelper.executeQuery(SQL);
         }
