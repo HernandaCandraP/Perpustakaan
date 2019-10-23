@@ -592,11 +592,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Algerian" size="36" style="1"/>
             </Property>
-<<<<<<< HEAD
-            <Property name="text" type="java.lang.String" value="PERPUSTAKAAN SMa NEGERI 06 MALANG"/>
-=======
             <Property name="text" type="java.lang.String" value="PERPUSTAKAAN SMA NEGERI 06 MALANG"/>
->>>>>>> refs/remotes/origin/master
           </Properties>
         </Component>
       </SubComponents>
