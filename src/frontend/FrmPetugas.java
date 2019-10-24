@@ -5,6 +5,7 @@
  */
 package frontend;
 import backend.Petugas;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
@@ -74,6 +75,50 @@ public class FrmPetugas extends javax.swing.JFrame {
         }
     }
 
+    public void editData(){
+        DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
+        int row = tblPetugas.getSelectedRow();
+        
+        txtIdPetugas.setText(model.getValueAt(row, 0).toString());
+        txtNama.setText(model.getValueAt(row, 1).toString());
+        txtAlamat.setText(model.getValueAt(row, 2).toString());
+        txtTelepon.setText(model.getValueAt(row, 3).toString());
+        String gender = (model.getValueAt(row, 4).toString());
+            if(gender.equals(rButtonLk.getActionCommand())){
+                rButtonPr.setSelected(true);
+            } else {
+                rButtonLk.setSelected(true);
+            }
+        txtUsername.setText(model.getValueAt(row, 5).toString());
+        txtPassword.setText(model.getValueAt(row, 6).toString());
+    }
+    
+    public void simpanData(){
+        Petugas A = new Petugas();
+        ButtonModel gGender = groupGender.getSelection();
+        if (gGender != null ) {
+            if (rButtonLk.isSelected()) {
+                Gender = rButtonLk.getText();
+            } else if (rButtonPr.isSelected()) {
+                Gender = rButtonPr.getText();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Jenis Kelamin belum diisi!! ");
+        }
+        
+        
+        A.setIdPetugas(Integer.parseInt(txtIdPetugas.getText()));
+        A.setNama(txtNama.getText());
+        A.setAlamat(txtAlamat.getText());
+        A.setTelepon(txtTelepon.getText());
+        A.setUsername(txtUsername.getText());
+        A.setPassword(txtPassword.getText());
+        A.setGender(Gender);
+        A.save();
+        txtIdPetugas.setText(Integer.toString(A.getIdPetugas()));
+        tampilkanData();
+    }
+    
     public void FrmAnggota(){
         initComponents();
         tampilkanData();
@@ -228,6 +273,11 @@ public class FrmPetugas extends javax.swing.JFrame {
         tblPetugas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPetugasMouseClicked(evt);
+            }
+        });
+        tblPetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblPetugasKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tblPetugas);
@@ -410,33 +460,41 @@ public class FrmPetugas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)                                    .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtNama))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jLabel5))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(39, 39, 39)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(rButtonLk)
+                                                            .addGap(15, 15, 15)
+                                                            .addComponent(rButtonPr))
+                                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(44, 44, 44)
+                                                    .addComponent(txtIdPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel7)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnSimpan)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnTambahBaru))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(39, 39, 39)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(rButtonLk)
-                                                        .addGap(15, 15, 15)
-                                                        .addComponent(rButtonPr))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
-                                                .addComponent(txtIdPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(btnTambahBaru))
+                                    .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,7 +507,7 @@ public class FrmPetugas extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnCari))))
                             .addComponent(jLabel9))
-                        .addGap(0, 119, Short.MAX_VALUE)))
+                        .addGap(0, 234, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -522,29 +580,7 @@ public class FrmPetugas extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        Petugas A = new Petugas();
-        ButtonModel gGender = groupGender.getSelection();
-        if (gGender != null ) {
-            if (rButtonLk.isSelected()) {
-                Gender = rButtonLk.getText();
-            } else if (rButtonPr.isSelected()) {
-                Gender = rButtonPr.getText();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Jenis Kelamin belum diisi!! ");
-        }
-        
-        
-        A.setIdPetugas(Integer.parseInt(txtIdPetugas.getText()));
-        A.setNama(txtNama.getText());
-        A.setAlamat(txtAlamat.getText());
-        A.setTelepon(txtTelepon.getText());
-        A.setUsername(txtUsername.getText());
-        A.setPassword(txtPassword.getText());
-        A.setGender(Gender);
-        A.save();
-        txtIdPetugas.setText(Integer.toString(A.getIdPetugas()));
-        tampilkanData();
+        simpanData();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
@@ -574,21 +610,7 @@ public class FrmPetugas extends javax.swing.JFrame {
 
     private void tblPetugasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPetugasMouseClicked
          // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
-        int row = tblPetugas.getSelectedRow();
-        
-        txtIdPetugas.setText(model.getValueAt(row, 0).toString());
-        txtNama.setText(model.getValueAt(row, 1).toString());
-        txtAlamat.setText(model.getValueAt(row, 2).toString());
-        txtTelepon.setText(model.getValueAt(row, 3).toString());
-        String gender = (model.getValueAt(row, 4).toString());
-            if(gender.equals(rButtonLk.getActionCommand())){
-                rButtonPr.setSelected(true);
-            } else {
-                rButtonLk.setSelected(true);
-            }
-        txtUsername.setText(model.getValueAt(row, 5).toString());
-        txtPassword.setText(model.getValueAt(row, 6).toString());
+        editData();
     }//GEN-LAST:event_tblPetugasMouseClicked
 
     private void txtTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeleponActionPerformed
@@ -666,6 +688,16 @@ public class FrmPetugas extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void tblPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPetugasKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
+            int row = tblPetugas.getSelectedRow();
+            editData();
+            simpanData();
+        }
+    }//GEN-LAST:event_tblPetugasKeyPressed
 
     /**
      * @param args the command line arguments
