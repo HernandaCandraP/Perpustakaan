@@ -75,6 +75,20 @@ public class FrmPetugas extends javax.swing.JFrame {
             ((DefaultTableModel)tblPetugas.getModel()).addRow(rowData);
         }
     }
+    
+//    public void tambahData(){
+//        Object rowData[] = new Object[7];
+//        rowData[0] = txtIdPetugas.getText();
+//        rowData[1] = txtNama.getText();
+//        rowData[2] = txtAlamat.getText();
+//        rowData[3] = txtTelepon.getText();
+//        rowData[4] = Gender.getGender();
+//        rowData[5] = txtUsername.getText();
+//        rowData[6] = txtPassword.getText();
+//
+//      // add row to the model
+//        //  model.addRow(row);
+//    }
 
     public void editData(){
         DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
@@ -209,7 +223,7 @@ public class FrmPetugas extends javax.swing.JFrame {
             }
         });
 
-        txtNama.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNama.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -254,10 +268,15 @@ public class FrmPetugas extends javax.swing.JFrame {
             }
         });
 
-        txtCari.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
+            }
+        });
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCariKeyPressed(evt);
             }
         });
 
@@ -360,14 +379,14 @@ public class FrmPetugas extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Password");
 
-        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
 
-        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -724,6 +743,11 @@ public class FrmPetugas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
+        // TODO add your handling code here:
+        cari(txtCari.getText());
+    }//GEN-LAST:event_txtCariKeyPressed
 
     /**
      * @param args the command line arguments
