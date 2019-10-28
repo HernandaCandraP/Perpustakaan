@@ -5,6 +5,7 @@
  */
 package frontend;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -64,6 +65,23 @@ public class FrmKategori extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+    }
+    public void edit(){
+        DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+        int row = tblKategori.getSelectedRow();
+        
+        txtIdKategori.setText(model.getValueAt(row, 0).toString());
+        txtNama.setText(model.getValueAt(row, 1).toString());
+        txtKeterangan.setText(model.getValueAt(row, 2).toString());
+    }
+    public void simpan(){
+        Kategori kat = new Kategori();
+        kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
+        kat.setNama(txtNama.getText());
+        kat.setKeterangan(txtKeterangan.getText());
+        kat.save();
+        txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
+        tampilkanData();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -212,6 +230,11 @@ public class FrmKategori extends javax.swing.JFrame {
         tblKategori.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblKategoriMouseClicked(evt);
+            }
+        });
+        tblKategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblKategoriKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tblKategori);
@@ -420,13 +443,7 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        Kategori kat = new Kategori();
-        kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
-        kat.setNama(txtNama.getText());
-        kat.setKeterangan(txtKeterangan.getText());
-        kat.save();
-        txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
-        tampilkanData();
+        simpan();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
@@ -515,6 +532,16 @@ public class FrmKategori extends javax.swing.JFrame {
         // TODO add your handling code here:
         tampilkanData();
     }//GEN-LAST:event_btnRefresh3ActionPerformed
+
+    private void tblKategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKategoriKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+            int row = tblKategori.getSelectedRow();
+            edit();
+            simpan();
+        }
+    }//GEN-LAST:event_tblKategoriKeyPressed
 
     /**
      * @param args the command line arguments
