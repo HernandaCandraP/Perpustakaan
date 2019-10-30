@@ -5,6 +5,7 @@
  */
 package frontend;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
@@ -86,6 +87,35 @@ public class FrmBuku extends javax.swing.JFrame {
         tampilkanData();
         tampilkanCmbKategori();
         kosongkanForm();
+    }
+    
+    public void simpan(){
+        Buku buku = new Buku();
+        buku.setIdbuku(Integer.parseInt(txtIdBuku.getText()));
+        buku.setKategori((Kategori)cmbKategori.getSelectedItem());
+        buku.setJudul(txtJudul.getText());
+        buku.setPenulis(txtPenulis.getText());
+        buku.setPenerbit(txtPenerbit.getText());
+        buku.setTahun_terbit(Integer.parseInt(txtTerbit.getText()));
+        buku.setTotal(Integer.parseInt(txtTotal.getText()));
+        buku.save();
+        
+        txtIdBuku.setText(Integer.toString(buku.getIdbuku()));
+        tampilkanData();
+    }
+    public void edit(){
+        DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
+        int row = tblBuku.getSelectedRow();
+        Buku buku = new Buku();
+        
+        buku = buku.getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+        txtIdBuku.setText(String.valueOf(buku.getIdbuku()));
+        cmbKategori.getModel().setSelectedItem(buku.getKategori());
+        txtJudul.setText(buku.getJudul());
+        txtPenerbit.setText(buku.getPenerbit());
+        txtPenulis.setText(buku.getPenulis());
+        txtTerbit.setText(String.valueOf(buku.getTahun_terbit()));
+        txtTotal.setText(String.valueOf(buku.getTotal()));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,6 +269,11 @@ public class FrmBuku extends javax.swing.JFrame {
         tblBuku.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblBukuMouseClicked(evt);
+            }
+        });
+        tblBuku.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblBukuKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tblBuku);
@@ -561,18 +596,7 @@ public class FrmBuku extends javax.swing.JFrame {
 
     private void tblBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBukuMouseClicked
          // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
-        int row = tblBuku.getSelectedRow();
-        Buku buku = new Buku();
-        
-        buku = buku.getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        txtIdBuku.setText(String.valueOf(buku.getIdbuku()));
-        cmbKategori.getModel().setSelectedItem(buku.getKategori());
-        txtJudul.setText(buku.getJudul());
-        txtPenerbit.setText(buku.getPenerbit());
-        txtPenulis.setText(buku.getPenulis());
-        txtTerbit.setText(String.valueOf(buku.getTahun_terbit()));
-        txtTotal.setText(String.valueOf(buku.getTotal()));
+        edit();
     }//GEN-LAST:event_tblBukuMouseClicked
 
     private void txtPenulisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPenulisActionPerformed
@@ -642,6 +666,17 @@ public class FrmBuku extends javax.swing.JFrame {
     private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void tblBukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblBukuKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
+            int row = tblBuku.getSelectedRow();
+            edit();
+            simpan();
+        }
+        
+    }//GEN-LAST:event_tblBukuKeyPressed
 
     /**
      * @param args the command line arguments
