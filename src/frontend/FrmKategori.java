@@ -21,6 +21,7 @@ public class FrmKategori extends javax.swing.JFrame {
     public FrmKategori() {
         initComponents();
         tampilkanData();
+        kosongkanForm();
     }
     
     public void kosongkanForm(){
@@ -76,12 +77,16 @@ public class FrmKategori extends javax.swing.JFrame {
     }
     public void simpan(){
         Kategori kat = new Kategori();
-        kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
-        kat.setNama(txtNama.getText());
-        kat.setKeterangan(txtKeterangan.getText());
-        kat.save();
-        txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
-        tampilkanData();
+        if (txtNama.getText().equals("")||txtKeterangan.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
+            kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
+            kat.setNama(txtNama.getText());
+            kat.setKeterangan(txtKeterangan.getText());
+            kat.save();
+            txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
+            tampilkanData();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -375,7 +380,7 @@ public class FrmKategori extends javax.swing.JFrame {
                                         .addComponent(txtIdKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jLabel9)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnHapus)
@@ -458,13 +463,20 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
-        int row = tblKategori.getSelectedRow();
         
-        Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        kat.delete();
-        kosongkanForm();
-        tampilkanData();
+        
+        Object options[] = {"Ya", "Tidak"};
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Delete",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+        if(result == JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+            int row = tblKategori.getSelectedRow();
+            Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+            kat.delete();
+            kosongkanForm();
+            tampilkanData();
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
