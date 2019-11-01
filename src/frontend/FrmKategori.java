@@ -5,6 +5,7 @@
  */
 package frontend;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ public class FrmKategori extends javax.swing.JFrame {
     public FrmKategori() {
         initComponents();
         tampilkanData();
+        kosongkanForm();
     }
     
     public void kosongkanForm(){
@@ -64,6 +66,27 @@ public class FrmKategori extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+    }
+    public void edit(){
+        DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+        int row = tblKategori.getSelectedRow();
+        
+        txtIdKategori.setText(model.getValueAt(row, 0).toString());
+        txtNama.setText(model.getValueAt(row, 1).toString());
+        txtKeterangan.setText(model.getValueAt(row, 2).toString());
+    }
+    public void simpan(){
+        Kategori kat = new Kategori();
+        if (txtNama.getText().equals("")||txtKeterangan.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
+            kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
+            kat.setNama(txtNama.getText());
+            kat.setKeterangan(txtKeterangan.getText());
+            kat.save();
+            txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
+            tampilkanData();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,6 +237,11 @@ public class FrmKategori extends javax.swing.JFrame {
                 tblKategoriMouseClicked(evt);
             }
         });
+        tblKategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblKategoriKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblKategori);
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
@@ -352,7 +380,7 @@ public class FrmKategori extends javax.swing.JFrame {
                                         .addComponent(txtIdKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jLabel9)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnHapus)
@@ -420,13 +448,7 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        Kategori kat = new Kategori();
-        kat.setIdkategori(Integer.parseInt(txtIdKategori.getText()));
-        kat.setNama(txtNama.getText());
-        kat.setKeterangan(txtKeterangan.getText());
-        kat.save();
-        txtIdKategori.setText(Integer.toString(kat.getIdkategori()));
-        tampilkanData();
+        simpan();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
@@ -441,13 +463,20 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
-        int row = tblKategori.getSelectedRow();
         
-        Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        kat.delete();
-        kosongkanForm();
-        tampilkanData();
+        
+        Object options[] = {"Ya", "Tidak"};
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Delete",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+        if(result == JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+            int row = tblKategori.getSelectedRow();
+            Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+            kat.delete();
+            kosongkanForm();
+            tampilkanData();
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
@@ -515,6 +544,16 @@ public class FrmKategori extends javax.swing.JFrame {
         // TODO add your handling code here:
         tampilkanData();
     }//GEN-LAST:event_btnRefresh3ActionPerformed
+
+    private void tblKategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblKategoriKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+            int row = tblKategori.getSelectedRow();
+            edit();
+            simpan();
+        }
+    }//GEN-LAST:event_tblKategoriKeyPressed
 
     /**
      * @param args the command line arguments

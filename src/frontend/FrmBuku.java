@@ -5,6 +5,9 @@
  */
 package frontend;
 import backend.*;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
@@ -33,12 +36,13 @@ public class FrmBuku extends javax.swing.JFrame {
         txtPenerbit.setText("");
         txtTerbit.setText("");
         txtTotal.setText("");
+        txtLoker.setText("");
     }
     
     public void tampilkanData(){
-        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Total"};
+        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Total", "loker"};
         ArrayList<Buku> list = new Buku().getAll();
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[8];
         
         tblBuku.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -50,15 +54,16 @@ public class FrmBuku extends javax.swing.JFrame {
             rowData[4] = list.get(i).getPenerbit();
             rowData[5] = list.get(i).getTahun_terbit();
             rowData[6] = list.get(i).getTotal();
+            rowData[7] = list.get(i).getLoker();
             
             ((DefaultTableModel)tblBuku.getModel()).addRow(rowData);
         }
     }
     
     public void cari(String keyword){
-        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Total"};
+        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Total", "loker"};
         ArrayList<Buku> list = new Buku().search(keyword);
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[8];
         
         tblBuku.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -70,6 +75,7 @@ public class FrmBuku extends javax.swing.JFrame {
             rowData[4] = buku.getPenerbit();
             rowData[5] = buku.getTahun_terbit();
             rowData[6] = buku.getTotal();
+            rowData[7] = buku.getLoker();
             
             ((DefaultTableModel)tblBuku.getModel()).addRow(rowData);
         }
@@ -86,6 +92,37 @@ public class FrmBuku extends javax.swing.JFrame {
         tampilkanData();
         tampilkanCmbKategori();
         kosongkanForm();
+    }
+    
+    public void simpan(){
+        Buku buku = new Buku();
+        buku.setIdbuku(Integer.parseInt(txtIdBuku.getText()));
+        buku.setKategori((Kategori)cmbKategori.getSelectedItem());
+        buku.setJudul(txtJudul.getText());
+        buku.setPenulis(txtPenulis.getText());
+        buku.setPenerbit(txtPenerbit.getText());
+        buku.setTahun_terbit(Integer.parseInt(txtTerbit.getText()));
+        buku.setTotal(Integer.parseInt(txtTotal.getText()));
+        buku.setLoker(txtLoker.getText());
+        buku.save();
+        
+        txtIdBuku.setText(Integer.toString(buku.getIdbuku()));
+        tampilkanData();
+    }
+    public void edit(){
+        DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
+        int row = tblBuku.getSelectedRow();
+        Buku buku = new Buku();
+        
+        buku = buku.getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+        txtIdBuku.setText(String.valueOf(buku.getIdbuku()));
+        cmbKategori.getModel().setSelectedItem(buku.getKategori());
+        txtJudul.setText(buku.getJudul());
+        txtPenerbit.setText(buku.getPenerbit());
+        txtPenulis.setText(buku.getPenulis());
+        txtTerbit.setText(String.valueOf(buku.getTahun_terbit()));
+        txtTotal.setText(String.valueOf(buku.getTotal()));
+        txtLoker.setText(buku.getLoker());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,6 +160,8 @@ public class FrmBuku extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtLoker = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuHome = new javax.swing.JMenuItem();
@@ -241,6 +280,11 @@ public class FrmBuku extends javax.swing.JFrame {
                 tblBukuMouseClicked(evt);
             }
         });
+        tblBuku.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblBukuKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblBuku);
 
         txtPenulis.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -316,6 +360,9 @@ public class FrmBuku extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel9.setText("Menu BUKU");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("Loker");
 
         jMenu1.setText("Menu");
 
@@ -400,6 +447,7 @@ public class FrmBuku extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel9)
                         .addGroup(layout.createSequentialGroup()
+                            .addGap(2, 2, 2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,22 +467,19 @@ public class FrmBuku extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSimpan)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnTambahBaru)
-                                        .addGap(64, 64, 64))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtTerbit, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                            .addComponent(txtPenulis, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                            .addComponent(txtPenerbit, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                            .addComponent(txtTotal)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(5, 5, 5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel10))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtTerbit)
+                                        .addComponent(txtPenulis)
+                                        .addComponent(txtPenerbit)
+                                        .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                        .addComponent(txtLoker))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -446,7 +491,12 @@ public class FrmBuku extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnCari))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSimpan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTambahBaru)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -456,9 +506,17 @@ public class FrmBuku extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCari)
+                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHapus)
+                            .addComponent(btnRefresh2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtIdBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -486,17 +544,11 @@ public class FrmBuku extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(30, 30, 30))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCari)
-                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHapus)
-                            .addComponent(btnRefresh2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(txtLoker, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan)
                     .addComponent(btnTambahBaru))
@@ -521,6 +573,9 @@ public class FrmBuku extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         Buku buku = new Buku();
+        if (txtJudul.getText().equals("")||txtPenulis.getText().equals("")||txtPenerbit.getText().equals("")||txtTerbit.getText().equals("")||txtTotal.getText().equals("")||txtLoker.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
         buku.setIdbuku(Integer.parseInt(txtIdBuku.getText()));
         buku.setKategori((Kategori)cmbKategori.getSelectedItem());
         buku.setJudul(txtJudul.getText());
@@ -528,10 +583,13 @@ public class FrmBuku extends javax.swing.JFrame {
         buku.setPenerbit(txtPenerbit.getText());
         buku.setTahun_terbit(Integer.parseInt(txtTerbit.getText()));
         buku.setTotal(Integer.parseInt(txtTotal.getText()));
+        buku.setLoker(txtLoker.getText());
         buku.save();
         
         txtIdBuku.setText(Integer.toString(buku.getIdbuku()));
         tampilkanData();
+        }
+        
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
@@ -546,13 +604,21 @@ public class FrmBuku extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
-        int row = tblBuku.getSelectedRow();
         
-        Buku buku = new Buku().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        buku.delete();
-        kosongkanForm();
-        tampilkanData();
+        
+        Object options[] = {"Ya", "Tidak"};
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+        if(result == JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
+            int row = tblBuku.getSelectedRow();
+
+            Buku buku = new Buku().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+            buku.delete();
+            kosongkanForm();
+            tampilkanData();
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
@@ -561,18 +627,7 @@ public class FrmBuku extends javax.swing.JFrame {
 
     private void tblBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBukuMouseClicked
          // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
-        int row = tblBuku.getSelectedRow();
-        Buku buku = new Buku();
-        
-        buku = buku.getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        txtIdBuku.setText(String.valueOf(buku.getIdbuku()));
-        cmbKategori.getModel().setSelectedItem(buku.getKategori());
-        txtJudul.setText(buku.getJudul());
-        txtPenerbit.setText(buku.getPenerbit());
-        txtPenulis.setText(buku.getPenulis());
-        txtTerbit.setText(String.valueOf(buku.getTahun_terbit()));
-        txtTotal.setText(String.valueOf(buku.getTotal()));
+        edit();
     }//GEN-LAST:event_tblBukuMouseClicked
 
     private void txtPenulisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPenulisActionPerformed
@@ -643,6 +698,17 @@ public class FrmBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
 
+    private void tblBukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblBukuKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblBuku.getModel();
+            int row = tblBuku.getSelectedRow();
+            edit();
+            simpan();
+        }
+        
+    }//GEN-LAST:event_tblBukuKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -695,6 +761,7 @@ public class FrmBuku extends javax.swing.JFrame {
     private javax.swing.JButton btnTambahBaru;
     private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -719,6 +786,7 @@ public class FrmBuku extends javax.swing.JFrame {
     private javax.swing.JTextField txtCari;
     private javax.swing.JTextField txtIdBuku;
     private javax.swing.JTextField txtJudul;
+    private javax.swing.JTextField txtLoker;
     private javax.swing.JTextField txtPenerbit;
     private javax.swing.JTextField txtPenulis;
     private javax.swing.JTextField txtTerbit;
