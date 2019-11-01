@@ -32,13 +32,14 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         tampilData();
         kosongkanForm();
     }
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     public void kosongkanForm(){
         this.idpeminjaman.setText("0");
         this.cariAnggota.setText("");
         this.cariBuku.setText("");
-        this.tglPinjam.setText("");
-        this.tglKembali.setText("");
+        this.tglPinjam.setDate(null);
+        this.tglKembali.setDate(null);
         this.txtDenda.setText("0");
         this.txtHari.setText("");
     }
@@ -70,8 +71,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tglKembali = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         btnAng = new javax.swing.JButton();
         btnPetugas = new javax.swing.JButton();
         cariAng = new javax.swing.JLabel();
@@ -89,8 +88,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         cariAnggota = new javax.swing.JTextField();
         cariBuku = new javax.swing.JTextField();
         btnHapus = new javax.swing.JButton();
-        tglPinjam = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,6 +100,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        tglPinjam = new com.toedter.calendar.JDateChooser();
+        tglKembali = new com.toedter.calendar.JDateChooser();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuHome = new javax.swing.JMenuItem();
@@ -115,16 +114,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         Quit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tglKembali.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tglKembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tglKembaliActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Format : YYYY-MM-DD");
 
         btnAng.setBackground(new java.awt.Color(255, 255, 153));
         btnAng.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -226,11 +215,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
-
-        tglPinjam.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Format : YYYY-MM-DD");
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -403,10 +387,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8))
+                                    .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -420,7 +401,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                             .addComponent(cariPetugas)
                                             .addComponent(cariAng)))
                                     .addComponent(jLabel12))
-                                .addGap(98, 98, 98)
+                                .addGap(143, 143, 143)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -444,12 +425,11 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                             .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtDenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(txtDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel9)
-                                                    .addComponent(jLabel10)))))))
+                                                .addComponent(jLabel10)))
+                                        .addGap(41, 41, 41))))
                             .addComponent(btnSimpanP)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,8 +444,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -474,10 +454,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9))
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -505,14 +483,11 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                         .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnPetugas)))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))))
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addComponent(jLabel4)))))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanP)
                     .addComponent(btnSimpan))
@@ -526,7 +501,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnRefresh2)
                         .addGap(74, 74, 74)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -556,8 +531,32 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         idpeminjaman.setText(String.valueOf(pem.getIdpeminjaman()));
         cariAnggota.setText(String.valueOf(pem.getIdanggota()));
         cariBuku.setText(String.valueOf(pem.getIdpetugas()));
-        tglPinjam.setText(String.valueOf(pem.getTanggalPinjam()));
-        tglKembali.setText(String.valueOf(pem.getTanggalKembali()));
+        String date = pem.getTanggalPinjam();
+        String dateP = pem.getTanggalKembali();
+        
+        if (date != null) {
+            java.util.Date date2;
+            try {
+                date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                tglPinjam.setDate(date2);
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmPeminjaman.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+        }else{
+            tglPinjam.setDate(null);
+        }
+        
+        if (dateP != null) {
+            java.util.Date date2P;
+            try {
+                date2P = new SimpleDateFormat("yyyy-MM-dd").parse(dateP);
+                tglKembali.setDate(date2P);
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmPeminjaman.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            tglKembali.setDate(null);
+        }
         txtDenda.setText(String.valueOf(pem.getDenda()));
 
         if(hari != 0){
@@ -565,7 +564,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         }else{
             txtHari.setText("Pengembalian buku tepat waktu");
         }
-        if(tglKembali.getText().equals("null")){
+        if(tglKembali.getDate().equals("null")){
             txtHari.setText("Buku belum dikembaikan");
         }
     }//GEN-LAST:event_tabelDataMouseClicked
@@ -573,8 +572,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         try {
-            String satu = tglPinjam.getText();
-            String dua= tglKembali.getText();
+            String satu = tglPinjam.getDateFormatString();
+            String dua= tglKembali.getDateFormatString();
             DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 
             Date awal = (Date) date.parse(satu);
@@ -587,8 +586,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
             Peminjaman pem = new Peminjaman().getById(Integer.parseInt(this.idpeminjaman.getText()));
             pem.setAng(new Anggota().getById(Integer.parseInt(this.cariAnggota.getText())));
             pem.setPetugas(new Petugas().getById(Integer.parseInt(this.cariBuku.getText())));
-            pem.setTanggalPinjam(this.tglPinjam.getText());
-            pem.setTanggalKembali(this.tglKembali.getText());
+            pem.setTanggalPinjam(sdf.format(this.tglPinjam.getDate()));
+            pem.setTanggalKembali(sdf.format(this.tglKembali.getDate()));
             pem.setDenda(Integer.parseInt(this.txtDenda.getText()));
             //pem.setTotal(Integer.parseInt(this.txtTotal.getText()));
            
@@ -703,8 +702,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         Peminjaman pem = new Peminjaman().getById(Integer.parseInt(this.idpeminjaman.getText()));
         pem.setAng(new Anggota().getById(Integer.parseInt(this.cariAnggota.getText())));
         pem.setPetugas(new Petugas().getById(Integer.parseInt(this.cariBuku.getText())));
-        pem.setTanggalPinjam(this.tglPinjam.getText());
         
+        pem.setTanggalPinjam(sdf.format(this.tglPinjam.getDate()));
         Buku bk = new Buku().getById(Integer.parseInt(this.cariBuku.getText()));
 //        int total_peminjaman = Integer.parseInt(this.txtTotal.getText());        
         
@@ -719,10 +718,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         pem.saveP();
         tampilData();
     }//GEN-LAST:event_btnSimpanPActionPerformed
-
-    private void tglKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglKembaliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tglKembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -786,8 +781,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuAnggota;
     private javax.swing.JMenuBar jMenuBar2;
@@ -800,8 +793,8 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tabelData;
-    private javax.swing.JTextField tglKembali;
-    private javax.swing.JTextField tglPinjam;
+    private com.toedter.calendar.JDateChooser tglKembali;
+    private com.toedter.calendar.JDateChooser tglPinjam;
     private javax.swing.JTextField txtDenda;
     private javax.swing.JTextField txtHari;
     // End of variables declaration//GEN-END:variables
