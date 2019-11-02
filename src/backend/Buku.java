@@ -220,7 +220,7 @@ public class Buku {
                     +"  '" +this.penerbit+ "',"
                     +"  " +this.tahun_terbit+ ","
                     +"  " +this.total+ ","
-                    +"  " +this.loker+ ""
+                    +"  '" +this.loker+ "'"
                     +"  )";
             this.idbuku = DBHelper.insertQueryGetId(SQL);
         }
@@ -232,8 +232,8 @@ public class Buku {
                     +"  penerbit = '" +this.penerbit + "',"
                     +"  tahun_terbit = " +this.tahun_terbit + ","
                     +"  total = " +this.total + ","
-                    +"  loker = " +this.loker + ""
-                    +"  WHERE idbuku = '" +this.idbuku+ "'";
+                    +"  loker = '" +this.loker + "'"
+                    +"  WHERE idbuku = " +this.idbuku+ "";
             DBHelper.executeQuery(SQL);
         }
     }
