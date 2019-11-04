@@ -22,6 +22,7 @@ public class FrmKategori extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+        txtNama.requestFocusInWindow();
     }
     
     public void kosongkanForm(){
@@ -61,12 +62,7 @@ public class FrmKategori extends javax.swing.JFrame {
             ((DefaultTableModel)tblKategori.getModel()).addRow(rowData);
         }
     }
-
-    public void FrmKategori(){
-        initComponents();
-        tampilkanData();
-        kosongkanForm();
-    }
+    
     public void edit(){
         DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
         int row = tblKategori.getSelectedRow();
@@ -168,11 +164,21 @@ public class FrmKategori extends javax.swing.JFrame {
                 txtNamaActionPerformed(evt);
             }
         });
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaKeyPressed(evt);
+            }
+        });
 
         txtKeterangan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtKeterangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKeteranganActionPerformed(evt);
+            }
+        });
+        txtKeterangan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKeteranganKeyPressed(evt);
             }
         });
 
@@ -458,25 +464,33 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        cari(txtCari.getText());
+        if (txtIdKategori.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukkan Keyword Pencarian");
+        }else{
+            cari(txtCari.getText());
+        }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
         
-        
-        Object options[] = {"Ya", "Tidak"};
-        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-            null, options, options[1]);
-        if(result == JOptionPane.YES_OPTION){
-            DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
-            int row = tblKategori.getSelectedRow();
-            Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-            kat.delete();
-            kosongkanForm();
-            tampilkanData();
+        if (txtIdKategori.getText().equals("0")) {
+            JOptionPane.showMessageDialog(null, "Pilih Data yang akan dihapus");
+        }else{
+            Object options[] = {"Ya", "Tidak"};
+            int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, options, options[1]);
+            if(result == JOptionPane.YES_OPTION){
+                DefaultTableModel model = (DefaultTableModel)tblKategori.getModel();
+                int row = tblKategori.getSelectedRow();
+                Kategori kat = new Kategori().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+                kat.delete();
+                kosongkanForm();
+                tampilkanData();
+            }
         }
+        
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
@@ -554,6 +568,20 @@ public class FrmKategori extends javax.swing.JFrame {
             simpan();
         }
     }//GEN-LAST:event_tblKategoriKeyPressed
+
+    private void txtNamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtKeterangan.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtNamaKeyPressed
+
+    private void txtKeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeteranganKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnSimpan.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtKeteranganKeyPressed
 
     /**
      * @param args the command line arguments
