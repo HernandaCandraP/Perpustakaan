@@ -7,6 +7,7 @@ package backend;
 
 import com.mysql.jdbc.Connection;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,7 @@ public class DBHelper {
                   koneksi = (Connection) DriverManager.getConnection(url, user, password);
               }          
               catch (SQLException t){
-                  System.out.println("Connection error!");
+                  JOptionPane.showMessageDialog(null, "Koneksi Error, hubungkan database");
               }   
           }
      }

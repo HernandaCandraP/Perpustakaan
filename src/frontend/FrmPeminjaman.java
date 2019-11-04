@@ -6,6 +6,7 @@
 package frontend;
 import java.util.Date;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         initComponents();
         kosongkan();
         tabelkosong();
+        cariAnggota.requestFocusInWindow();
     }
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -84,11 +86,11 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         pem.setAng(new Anggota().getById(Integer.parseInt(this.cariAnggota.getText())));
         pem.setBuku(new Buku().getById(Integer.parseInt(this.cariBuku.getText())));
         pem.setPetugas(new Petugas().getById(Integer.parseInt(this.cariPetugas.getText())));
-        
+
         pem.setTanggalPinjam(sdf.format(this.tglPinjam.getDate()));
         Buku bk = new Buku().getById(Integer.parseInt(this.cariBuku.getText()));
         int total_peminjaman = Integer.parseInt(this.txtTotal.getText());        
-        
+
         if(bk.getTotal() >= total_peminjaman){
             bk.setTotal(bk.getTotal() - total_peminjaman + pem.getTotal());
             System.out.println("total akhir: "+bk.getTotal());
@@ -99,6 +101,88 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         }    
         pem.saveP();
         cari(cariAnggota.getText());
+
+        cariBuku.requestFocusInWindow();
+        
+    }
+    
+    public void cariAnggota(){
+        try 
+        {
+            if (cariAnggota.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan ID Anggota Dengan Benar");
+            }else{
+                Peminjaman pem = new Peminjaman();
+                pem.cariAnggota(Integer.parseInt(this.cariAnggota.getText()));
+                if ((pem.getAng().getNama() == null)) {
+                    JOptionPane.showMessageDialog(null, "Nama Anggota tidak tersedia");
+                    cariAnggota.setText("");
+                    cariAng.setText("Nama Anggota");
+                }else{
+                    this.cariAng.setText((pem.getAng().getNama()));
+                    cari(cariAnggota.getText());
+                    cariBuku.requestFocusInWindow();
+                }
+            }
+        }  
+        catch (NumberFormatException e){ 
+            JOptionPane.showMessageDialog(null, "Masukkan ID Anggota Dengan Benar");
+            cariAnggota.setText("");
+            cariAng.setText("Nama Anggota");
+        }
+    }
+    
+    public void cariBuku(){
+        try{
+            if (cariBuku.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan ID Buku Dengan Benar");
+            }else{
+                Peminjaman pem = new Peminjaman();
+                pem.cariBuku(Integer.parseInt(this.cariBuku.getText()));
+                if ((pem.getBuku().getJudul()) == null) {
+                    JOptionPane.showMessageDialog(null, "Buku Tidak Tersedia");
+                    cariBuku.setText("");
+                    cariBu.setText("Judul Buku");
+                }else{
+                    this.cariBu.setText((pem.getBuku().getJudul()));
+                    txtTotal.requestFocusInWindow();
+                }
+            }
+        }  
+        catch (NumberFormatException e){ 
+            JOptionPane.showMessageDialog(null, "Masukkan ID Buku Dengan Benar");
+            cariBuku.setText("");
+            cariBu.setText("Judul Buku");
+        }
+    }
+    
+    public void cariPetugas(){
+        try{
+            if (cariPetugas.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan ID Petugas Dengan Benar");
+            }else{
+                Peminjaman pem = new Peminjaman();
+                pem.cariPetugas(Integer.parseInt(this.cariPetugas.getText()));
+                if (pem.getPetugas().getNama() == null) {
+                    JOptionPane.showMessageDialog(null, "Nama Petugas Tidak tersedia");
+                    cariPetugas.setText("");
+                    cariPg.setText("Nama Petugas");
+                }else{
+                    this.cariPg.setText((pem.getPetugas().getNama()));
+                    if (cariAnggota.getText().equals("")||cariBuku.getText().equals("")||txtTotal.getText().equals("")||tglPinjam.getCalendar() ==null||cariPetugas.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+                    }else{
+                        simpan();
+                        kosongkan();
+                    }
+                }
+            }
+        }  
+        catch (NumberFormatException e){ 
+            JOptionPane.showMessageDialog(null, "Masukkan ID Petugas Dengan Benar");
+            cariPetugas.setText("");
+            cariPg.setText("Nama Petugas");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,8 +309,18 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                 cariAnggotaActionPerformed(evt);
             }
         });
+        cariAnggota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariAnggotaKeyPressed(evt);
+            }
+        });
 
         cariBuku.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cariBuku.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariBukuKeyPressed(evt);
+            }
+        });
 
         btnHapus.setBackground(new java.awt.Color(255, 102, 102));
         btnHapus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -283,11 +377,28 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         jLabel11.setText("Total Buku");
 
         txtTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTotalKeyPressed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel12.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel12.setText("Peminjaman Buku");
+
+        tglPinjam.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tglPinjamKeyPressed(evt);
+            }
+        });
+
+        cariPetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariPetugasKeyPressed(evt);
+            }
+        });
 
         btnPetugas.setBackground(new java.awt.Color(255, 255, 153));
         btnPetugas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -403,29 +514,24 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                     .addComponent(jLabel11))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                                                .addComponent(btnAng))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                                        .addComponent(btnAng))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnBuku)))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(cariBu)
-                                                    .addComponent(cariAng)))
-                                            .addComponent(btnTambah))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnBuku)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cariBu)
+                                            .addComponent(cariAng)))
+                                    .addComponent(btnTambah)
+                                    .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnRefresh2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -510,24 +616,12 @@ public class FrmPeminjaman extends javax.swing.JFrame {
 
     private void btnAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngActionPerformed
         // TODO add your handling code here:
-        Peminjaman pem = new Peminjaman();
-        pem.cariAnggota(Integer.parseInt(this.cariAnggota.getText()));
-        this.cariAng.setText((pem.getAng().getNama()));
-        
-        cari(cariAnggota.getText());
-        
-        this.idpeminjaman.setText("0");
-        this.cariBuku.setText("");
-        this.cariPetugas.setText("");
-        this.txtTotal.setText("");
-        this.tglPinjam.setDate(null);
+        cariAnggota();
     }//GEN-LAST:event_btnAngActionPerformed
 
     private void btnBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBukuActionPerformed
         // TODO add your handling code here:
-        Peminjaman pem = new Peminjaman();
-        pem.cariBuku(Integer.parseInt(this.cariBuku.getText()));
-        this.cariBu.setText((pem.getBuku().getJudul()));
+        cariBuku();
     }//GEN-LAST:event_btnBukuActionPerformed
 
     private void tabelDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelDataMouseClicked
@@ -561,23 +655,33 @@ public class FrmPeminjaman extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        simpan();
-        kosongkanForm();
+        if (cariAnggota.getText().equals("")||cariBuku.getText().equals("")||txtTotal.getText().equals("")||tglPinjam.getCalendar() ==null||cariPetugas.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
+            simpan();
+            kosongkanForm();
+        }
     }//GEN-LAST:event_btnTambahActionPerformed
-
-    private void cariAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariAnggotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cariAnggotaActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)this.tabelData.getModel();
-        int row = this.tabelData.getSelectedRow();
+        if (idpeminjaman.getText().equals("0")) {
+            JOptionPane.showMessageDialog(null, "Pilih Peminjaman yang Ingin Dihapus");
+        }else{
+            Object options[] = {"Ya", "Tidak"};
+            int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+            if(result == JOptionPane.YES_OPTION){
+                DefaultTableModel model = (DefaultTableModel)this.tabelData.getModel();
+                int row = this.tabelData.getSelectedRow();
 
-        Peminjaman pem = new Peminjaman().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        pem.delete();
-        cari(cariAnggota.getText());
-        kosongkanForm();
+                Peminjaman pem = new Peminjaman().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+                pem.delete();
+                cari(cariAnggota.getText());
+                kosongkanForm();
+            }
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void jMenuAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAnggotaActionPerformed
@@ -635,16 +739,65 @@ public class FrmPeminjaman extends javax.swing.JFrame {
 
     private void btnSimpanPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPActionPerformed
         // TODO add your handling code here:   
-        simpan();
-        kosongkan();
+        if (cariAnggota.getText().equals("")||cariBuku.getText().equals("")||txtTotal.getText().equals("")||tglPinjam.getCalendar() ==null||cariPetugas.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
+            simpan();
+            kosongkan();
+        }
     }//GEN-LAST:event_btnSimpanPActionPerformed
 
     private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
         // TODO add your handling code here:
-        Peminjaman pem = new Peminjaman();
-        pem.cariPetugas(Integer.parseInt(this.cariPetugas.getText()));
-        this.cariPg.setText((pem.getPetugas().getNama()));
+        cariPetugas();
     }//GEN-LAST:event_btnPetugasActionPerformed
+
+    private void cariAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariAnggotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariAnggotaActionPerformed
+
+    private void cariAnggotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariAnggotaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cariAnggota();
+        }
+    }//GEN-LAST:event_cariAnggotaKeyPressed
+
+    private void cariBukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariBukuKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cariBuku();
+        }
+    }//GEN-LAST:event_cariBukuKeyPressed
+
+    private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (txtTotal.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan Total Buku");
+            }else{
+                tglPinjam.requestFocusInWindow();
+            }
+        }
+    }//GEN-LAST:event_txtTotalKeyPressed
+
+    private void tglPinjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tglPinjamKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (tglPinjam.getCalendar()==null) {
+                JOptionPane.showMessageDialog(null, "Masukkan Tanggal Peminjaman Buku");
+            }else{
+                cariPetugas.requestFocusInWindow();
+            }
+        }
+    }//GEN-LAST:event_tglPinjamKeyPressed
+
+    private void cariPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariPetugasKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cariPetugas();
+        }
+    }//GEN-LAST:event_cariPetugasKeyPressed
 
     /**
      * @param args the command line arguments

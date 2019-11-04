@@ -38,6 +38,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 dispose();
             }else {
                 JOptionPane.showMessageDialog(null,"Gagal Login");
+                txtusername.requestFocusInWindow();
             }
             
             
@@ -218,7 +219,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            login();
+            txtpassword.requestFocusInWindow();
         }
     }//GEN-LAST:event_txtusernameKeyPressed
 
