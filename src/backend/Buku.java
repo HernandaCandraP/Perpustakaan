@@ -187,7 +187,8 @@ public class Buku {
                 + " LEFT JOIN kategori k ON b.idkategori = k.idkategori "
                 + " WHERE b.judul LIKE '%" +keyword+ "%' "
                         + " OR b.penerbit LIKE '%" +keyword+ "%' "
-                        + " OR b.penerbit LIKE '%" +keyword+ "%' ");
+                        + " OR k.nama LIKE '%" +keyword+ "%' "
+                        + " OR b.tahun_terbit LIKE '%" +keyword+ "%' ");
         
         try{
             while(rs.next()){
