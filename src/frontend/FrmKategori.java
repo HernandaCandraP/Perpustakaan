@@ -466,7 +466,7 @@ public class FrmKategori extends javax.swing.JFrame {
         
         
         Object options[] = {"Ya", "Tidak"};
-        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Delete",
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
             null, options, options[1]);
         if(result == JOptionPane.YES_OPTION){
