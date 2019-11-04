@@ -83,7 +83,6 @@ public class FrmTblBuku extends javax.swing.JFrame {
         tblBuku = new javax.swing.JTable();
         btnCari = new javax.swing.JButton();
         txtCari = new javax.swing.JTextField();
-        btnRefresh = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -154,17 +153,19 @@ public class FrmTblBuku extends javax.swing.JFrame {
         });
 
         txtCari.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCariMouseClicked(evt);
+            }
+        });
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
             }
         });
-
-        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCariKeyPressed(evt);
             }
         });
 
@@ -217,11 +218,9 @@ public class FrmTblBuku extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCari)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRefresh))
+                                .addComponent(btnCari))
                             .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 1018, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,8 +232,7 @@ public class FrmTblBuku extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCari)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRefresh))
+                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -256,11 +254,6 @@ public class FrmTblBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        tampilkanData();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
     private void QuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitActionPerformed
         // TODO add your handling code here:
         Object options[] = {"Ya", "Tidak"};
@@ -277,6 +270,15 @@ public class FrmTblBuku extends javax.swing.JFrame {
         new FrmMenuAwal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuHomeActionPerformed
+
+    private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
+        // TODO add your handling code here:
+        cari(txtCari.getText());
+    }//GEN-LAST:event_txtCariKeyPressed
+
+    private void txtCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCariMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariMouseClicked
 
     /**
      * @param args the command line arguments
@@ -317,7 +319,6 @@ public class FrmTblBuku extends javax.swing.JFrame {
     private javax.swing.JMenu Edit;
     private javax.swing.JMenuItem Quit;
     private javax.swing.JButton btnCari;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
