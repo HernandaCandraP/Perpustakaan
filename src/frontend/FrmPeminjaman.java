@@ -210,7 +210,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        btnRefresh2 = new javax.swing.JButton();
         btnSimpanP = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -354,15 +353,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        btnRefresh2.setBackground(new java.awt.Color(153, 255, 153));
-        btnRefresh2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRefresh2.setText("Refresh");
-        btnRefresh2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefresh2ActionPerformed(evt);
-            }
-        });
-
         btnSimpanP.setBackground(new java.awt.Color(153, 102, 255));
         btnSimpanP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSimpanP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/gtk-save-as.png"))); // NOI18N
@@ -500,12 +490,10 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnHapus)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnSimpanP))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnHapus)
+                                .addGap(664, 664, 664)
+                                .addComponent(btnSimpanP))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -532,8 +520,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                             .addComponent(cariAng)))
                                     .addComponent(btnTambah)
                                     .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnRefresh2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -553,6 +539,10 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,8 +554,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnRefresh2))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,10 +587,10 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                                     .addComponent(cariPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnPetugas)
                                     .addComponent(cariPg)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSimpanP)
@@ -731,12 +720,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuPetugasActionPerformed
 
-    private void btnRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh2ActionPerformed
-        // TODO add your handling code here:
-        kosongkan();
-        tabelkosong();
-    }//GEN-LAST:event_btnRefresh2ActionPerformed
-
     private void btnSimpanPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPActionPerformed
         // TODO add your handling code here:   
         if (cariAnggota.getText().equals("")||cariBuku.getText().equals("")||txtTotal.getText().equals("")||tglPinjam.getCalendar() ==null||cariPetugas.getText().equals("")){
@@ -773,10 +756,16 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if (txtTotal.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Masukkan Total Buku");
+            String input = txtTotal.getText();
+            if (input.matches("[0-9]*")) {
+                if (txtTotal.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Masukkan Total Buku");
+                }else{
+                    tglPinjam.requestFocusInWindow();
+                }
             }else{
-                tglPinjam.requestFocusInWindow();
+                JOptionPane.showMessageDialog(null, "Masukkan Dengan Format Angka");                
+                txtTotal.setText("");
             }
         }
     }//GEN-LAST:event_txtTotalKeyPressed
@@ -842,7 +831,6 @@ public class FrmPeminjaman extends javax.swing.JFrame {
     private javax.swing.JButton btnBuku;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnPetugas;
-    private javax.swing.JButton btnRefresh2;
     private javax.swing.JButton btnSimpanP;
     private javax.swing.JButton btnTambah;
     private javax.swing.JLabel cariAng;

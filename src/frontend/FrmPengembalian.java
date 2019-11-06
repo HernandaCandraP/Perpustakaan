@@ -6,6 +6,7 @@
 package frontend;
 import java.util.Date;
 import backend.*;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
         initComponents();
         kosongkan();
         tabelkosong();
+        cariAnggota.requestFocusInWindow();
     }
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -82,6 +84,31 @@ public class FrmPengembalian extends javax.swing.JFrame {
         }
     }
     
+    public void cariAnggota(){
+        try{
+            if (cariAnggota.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan ID Anggota Dengan Benar");
+            }else{
+                Peminjaman pem = new Peminjaman();
+                pem.cariAnggota(Integer.parseInt(this.cariAnggota.getText()));
+                if ((pem.getAng().getNama() == null)) {
+                    JOptionPane.showMessageDialog(null, "Nama Anggota tidak tersedia");
+                    cariAnggota.setText("");
+                    cariAng.setText("Nama Anggota");
+                }else{
+                    this.cariAng.setText((pem.getAng().getNama()));
+                    cari(cariAnggota.getText());
+                }
+            }
+        }
+        catch (NumberFormatException e){ 
+            JOptionPane.showMessageDialog(null, "Masukkan ID Anggota Dengan Benar");
+            cariAnggota.setText("");
+            cariAng.setText("Nama Anggota");
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +133,6 @@ public class FrmPengembalian extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        btnRefresh2 = new javax.swing.JButton();
         btnSimpanP = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -181,6 +207,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
 
         idpeminjaman.setEditable(false);
         idpeminjaman.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        idpeminjaman.setEnabled(false);
 
         cariAnggota.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cariAnggota.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +215,13 @@ public class FrmPengembalian extends javax.swing.JFrame {
                 cariAnggotaActionPerformed(evt);
             }
         });
+        cariAnggota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariAnggotaKeyPressed(evt);
+            }
+        });
 
+        cariBuku.setEditable(false);
         cariBuku.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnHapus.setBackground(new java.awt.Color(255, 102, 102));
@@ -223,15 +256,6 @@ public class FrmPengembalian extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        btnRefresh2.setBackground(new java.awt.Color(153, 255, 153));
-        btnRefresh2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRefresh2.setText("Refresh");
-        btnRefresh2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefresh2ActionPerformed(evt);
-            }
-        });
-
         btnSimpanP.setBackground(new java.awt.Color(153, 102, 255));
         btnSimpanP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSimpanP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/gtk-save-as.png"))); // NOI18N
@@ -245,6 +269,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Total Buku");
 
+        txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -252,14 +277,20 @@ public class FrmPengembalian extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         jLabel12.setText("Pengembalian Buku");
 
+        tglPinjam.setEnabled(false);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Tanggal Kembali");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("Denda");
 
+        txtDenda.setEditable(false);
+
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("Keterangan");
+
+        txtHari.setEditable(false);
 
         jMenuBar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 255), new java.awt.Color(102, 102, 255), null, new java.awt.Color(153, 0, 255)));
 
@@ -341,103 +372,107 @@ public class FrmPengembalian extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(btnAng)
+                                .addGap(18, 18, 18)
+                                .addComponent(cariAng)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnHapus)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSimpanP))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, 0))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel11))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnRefresh2))
-                                    .addComponent(jLabel12)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cariBu)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnAng)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cariAng)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
+                                .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel15))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cariBu))
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnHapus))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel5))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSimpanP))
+                        .addGap(196, 196, 196))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnAng)
+                    .addComponent(cariAng))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnRefresh2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(btnAng)
-                            .addComponent(cariAng))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cariBu))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(103, 103, 103)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel3)
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cariBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cariBu))
+                                .addGap(73, 73, 73)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(tglPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(btnHapus))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
                                     .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -448,15 +483,11 @@ public class FrmPengembalian extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
-                                    .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimpanP)
-                    .addComponent(btnHapus))
-                .addGap(21, 21, 21))
+                                    .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(75, 75, 75)
+                                .addComponent(btnSimpanP))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -464,16 +495,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
 
     private void btnAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngActionPerformed
         // TODO add your handling code here:
-        Peminjaman pem = new Peminjaman();
-        pem.cariAnggota(Integer.parseInt(this.cariAnggota.getText()));
-        this.cariAng.setText((pem.getAng().getNama()));
-        
-        cari(cariAnggota.getText());
-        
-        this.idpeminjaman.setText("0");
-        this.cariBuku.setText("");
-        this.txtTotal.setText("");
-        this.tglPinjam.setDate(null);
+        cariAnggota();
     }//GEN-LAST:event_btnAngActionPerformed
 
     private void tabelDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelDataMouseClicked
@@ -590,59 +612,74 @@ public class FrmPengembalian extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuPetugasActionPerformed
 
-    private void btnRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh2ActionPerformed
-        // TODO add your handling code here:
-        kosongkan();
-        tabelkosong();
-    }//GEN-LAST:event_btnRefresh2ActionPerformed
-
     private void btnSimpanPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPActionPerformed
         // TODO add your handling code here:   
-        try {
-            String satu = sdf.format(this.tglPinjam.getDate());
-            String dua= sdf.format(this.tglKembali.getDate());
+    try {
+        if (cariAnggota.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukkan Id Anggota");
+            cariAnggota.requestFocusInWindow();
+        }else{
+            if (tglKembali.getCalendar() == null || idpeminjaman.getText().equals("0")) {
+                if(idpeminjaman.getText().equals("0")){
+                    JOptionPane.showMessageDialog(null, "Cari buku yang akan dikembalikan");
+                }else if(tglKembali.getCalendar() == null) {
+                    JOptionPane.showMessageDialog(null, "Masukkan Tanggal Pengembalian");
+                }
+            }else{
+                String satu = sdf.format(this.tglPinjam.getDate());
+                String dua= sdf.format(this.tglKembali.getDate());
 
-            Date awal = (Date) sdf.parse(satu);
-            Date akhir = (Date) sdf.parse(dua);
-            System.out.println(akhir);
-            
-            long bedaHari = Math.abs(akhir.getTime() - awal.getTime());
-            txtDenda.setText((TimeUnit.MILLISECONDS.toDays(bedaHari)-batas)*denda +"");
-            System.out.println(txtDenda.getText());
-            
-            
-            Peminjaman pem = new Peminjaman().getById(Integer.parseInt(this.idpeminjaman.getText()));
-            pem.setAng(new Anggota().getById(Integer.parseInt(this.cariAnggota.getText())));
-            
-            pem.setTanggalPinjam(sdf.format(this.tglPinjam.getDate()));
-            pem.setTanggalKembali(sdf.format(this.tglKembali.getDate()));
-            pem.setDenda(Integer.parseInt(this.txtDenda.getText()));
-            pem.setTotal(Integer.parseInt(this.txtTotal.getText()));
-           
-            int test = Integer.parseInt(txtDenda.getText());
-            if(test/denda > 0){
-                txtHari.setText("Waktu Pengembalian buku lebih dari " + (TimeUnit.MILLISECONDS.toDays(bedaHari)-batas) + " hari");
-                pem.setDenda(test);
-            } else{
-                txtDenda.setText("0");
-                txtHari.setText("Pengembalian buku tepat waktu");
-                pem.setDenda(0);
+                Date awal = (Date) sdf.parse(satu);
+                Date akhir = (Date) sdf.parse(dua);
+                System.out.println(akhir);
+
+                long bedaHari = Math.abs(akhir.getTime() - awal.getTime());
+                txtDenda.setText((TimeUnit.MILLISECONDS.toDays(bedaHari)-batas)*denda +"");
+                System.out.println(txtDenda.getText());
+
+
+                Peminjaman pem = new Peminjaman().getById(Integer.parseInt(this.idpeminjaman.getText()));
+                pem.setAng(new Anggota().getById(Integer.parseInt(this.cariAnggota.getText())));
+
+                pem.setTanggalPinjam(sdf.format(this.tglPinjam.getDate()));
+                pem.setTanggalKembali(sdf.format(this.tglKembali.getDate()));
+                pem.setDenda(Integer.parseInt(this.txtDenda.getText()));
+                pem.setTotal(Integer.parseInt(this.txtTotal.getText()));
+
+                int test = Integer.parseInt(txtDenda.getText());
+                if(test/denda > 0){
+                    txtHari.setText("Waktu Pengembalian buku lebih dari " + (TimeUnit.MILLISECONDS.toDays(bedaHari)-batas) + " hari");
+                    pem.setDenda(test);
+                } else{
+                    txtDenda.setText("0");
+                    txtHari.setText("Pengembalian buku tepat waktu");
+                    pem.setDenda(0);
+                }
+
+                Buku bk = new Buku().getById(Integer.parseInt(this.cariBuku.getText()));
+
+                bk.setTotal(bk.getTotal()+ pem.getTotal());
+                bk.save();
+                System.out.println("total: "+ bk.getTotal());
+
+                pem.save();
+                cari(cariAnggota.getText());
+                
+                kosongkan();
+                tabelkosong();
             }
-            
-            Buku bk = new Buku().getById(Integer.parseInt(this.cariBuku.getText()));
-            
-            bk.setTotal(bk.getTotal()+ pem.getTotal());
-            bk.save();
-            System.out.println("total: "+ bk.getTotal());
-        
-            pem.save();
-            cari(cariAnggota.getText());
-        } catch (ParseException ex) {        
-            System.out.println(ex);
         }
-        kosongkan();
-        tabelkosong();
+    } catch (ParseException ex) {        
+        System.out.println(ex);
+    }
     }//GEN-LAST:event_btnSimpanPActionPerformed
+
+    private void cariAnggotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariAnggotaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cariAnggota();
+        }
+    }//GEN-LAST:event_cariAnggotaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -687,7 +724,6 @@ public class FrmPengembalian extends javax.swing.JFrame {
     private javax.swing.JMenuItem Quit;
     private javax.swing.JButton btnAng;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnRefresh2;
     private javax.swing.JButton btnSimpanP;
     private javax.swing.JLabel cariAng;
     private javax.swing.JTextField cariAnggota;
