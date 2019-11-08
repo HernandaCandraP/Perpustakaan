@@ -25,6 +25,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+        txtNama.requestFocusInWindow();
     }
     
     public void kosongkanForm(){
@@ -92,12 +93,12 @@ public class FrmAnggota extends javax.swing.JFrame {
         }
         
         if (gStudi != null ) {
-            if (rButton7.isSelected()) {
-                Studi = rButton7.getText();
-            } else if (rButton8.isSelected()) {
-                Studi = rButton8.getText();
-            } else if (rButton9.isSelected()) {
-                Studi = rButton9.getText();
+            if (rButtonIPA.isSelected()) {
+                Studi = rButtonIPA.getText();
+            } else if (rButtonIPS.isSelected()) {
+                Studi = rButtonIPS.getText();
+            } else if (rButtonBAHASA.isSelected()) {
+                Studi = rButtonBAHASA.getText();
             }
         }else{
             JOptionPane.showMessageDialog(null, "Kelas belum diisi!! ");
@@ -129,12 +130,12 @@ public class FrmAnggota extends javax.swing.JFrame {
                 rButtonLk.setSelected(true);
             }
         String studi = (model.getValueAt(row, 5).toString());
-            if(studi.equals(rButton7.getActionCommand())){
-                rButton7.setSelected(true);
-            }else if(studi.equals(rButton8.getActionCommand())){ 
-                rButton8.setSelected(true);
+            if(studi.equals(rButtonIPA.getActionCommand())){
+                rButtonIPA.setSelected(true);
+            }else if(studi.equals(rButtonIPS.getActionCommand())){ 
+                rButtonIPS.setSelected(true);
             } else {
-                rButton9.setSelected(true);
+                rButtonBAHASA.setSelected(true);
             }
     }
     
@@ -176,10 +177,9 @@ public class FrmAnggota extends javax.swing.JFrame {
         rButtonLk = new javax.swing.JRadioButton();
         rButtonPr = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        rButton7 = new javax.swing.JRadioButton();
-        rButton8 = new javax.swing.JRadioButton();
-        btnRefresh2 = new javax.swing.JButton();
-        rButton9 = new javax.swing.JRadioButton();
+        rButtonIPA = new javax.swing.JRadioButton();
+        rButtonIPS = new javax.swing.JRadioButton();
+        rButtonBAHASA = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAlamat = new javax.swing.JTextArea();
@@ -232,6 +232,11 @@ public class FrmAnggota extends javax.swing.JFrame {
                 txtNamaActionPerformed(evt);
             }
         });
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaKeyPressed(evt);
+            }
+        });
 
         btnSimpan.setBackground(new java.awt.Color(153, 102, 255));
         btnSimpan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -278,6 +283,11 @@ public class FrmAnggota extends javax.swing.JFrame {
                 txtCariActionPerformed(evt);
             }
         });
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCariKeyPressed(evt);
+            }
+        });
 
         tblAnggota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,6 +316,11 @@ public class FrmAnggota extends javax.swing.JFrame {
         txtTelepon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTeleponActionPerformed(evt);
+            }
+        });
+        txtTelepon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTeleponKeyPressed(evt);
             }
         });
 
@@ -351,6 +366,11 @@ public class FrmAnggota extends javax.swing.JFrame {
                 rButtonLkActionPerformed(evt);
             }
         });
+        rButtonLk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonLkKeyPressed(evt);
+            }
+        });
 
         groupGender.add(rButtonPr);
         rButtonPr.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -360,49 +380,60 @@ public class FrmAnggota extends javax.swing.JFrame {
                 rButtonPrActionPerformed(evt);
             }
         });
+        rButtonPr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonPrKeyPressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Kelas");
 
-        groupStudi.add(rButton7);
-        rButton7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rButton7.setText("IPA");
-        rButton7.setAutoscrolls(true);
-        rButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        groupStudi.add(rButtonIPA);
+        rButtonIPA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rButtonIPA.setText("IPA");
+        rButtonIPA.setAutoscrolls(true);
+        rButtonIPA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rButton7MouseClicked(evt);
+                rButtonIPAMouseClicked(evt);
             }
         });
-        rButton7.addActionListener(new java.awt.event.ActionListener() {
+        rButtonIPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButton7ActionPerformed(evt);
+                rButtonIPAActionPerformed(evt);
             }
         });
-
-        groupStudi.add(rButton8);
-        rButton8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rButton8.setText("IPS");
-        rButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButton8ActionPerformed(evt);
+        rButtonIPA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonIPAKeyPressed(evt);
             }
         });
 
-        btnRefresh2.setBackground(new java.awt.Color(255, 255, 255));
-        btnRefresh2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRefresh2.setText("Refresh");
-        btnRefresh2.addActionListener(new java.awt.event.ActionListener() {
+        groupStudi.add(rButtonIPS);
+        rButtonIPS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rButtonIPS.setText("IPS");
+        rButtonIPS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefresh2ActionPerformed(evt);
+                rButtonIPSActionPerformed(evt);
+            }
+        });
+        rButtonIPS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonIPSKeyPressed(evt);
             }
         });
 
-        groupStudi.add(rButton9);
-        rButton9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rButton9.setText("BAHASA");
-        rButton9.addActionListener(new java.awt.event.ActionListener() {
+        groupStudi.add(rButtonBAHASA);
+        rButtonBAHASA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rButtonBAHASA.setText("BAHASA");
+        rButtonBAHASA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButton9ActionPerformed(evt);
+                rButtonBAHASAActionPerformed(evt);
+            }
+        });
+        rButtonBAHASA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonBAHASAKeyPressed(evt);
             }
         });
 
@@ -411,6 +442,11 @@ public class FrmAnggota extends javax.swing.JFrame {
 
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
+        txtAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAlamatKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtAlamat);
 
         jMenu1.setText("Menu");
@@ -513,7 +549,7 @@ public class FrmAnggota extends javax.swing.JFrame {
                                         .addComponent(btnTambahBaru))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(179, 179, 179)
-                                        .addComponent(rButton9))))
+                                        .addComponent(rButtonBAHASA))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel2)
@@ -535,20 +571,21 @@ public class FrmAnggota extends javax.swing.JFrame {
                                                 .addComponent(txtTelepon, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                                                 .addComponent(rButtonLk)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(rButton7)
+                                                    .addComponent(rButtonIPA)
                                                     .addGap(30, 30, 30)
-                                                    .addComponent(rButton8))
+                                                    .addComponent(rButtonIPS))
                                                 .addComponent(jScrollPane3)))))))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnRefresh2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCari))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
-                            .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCari))
+                                    .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
@@ -585,16 +622,15 @@ public class FrmAnggota extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rButton8)
-                            .addComponent(rButton7)
-                            .addComponent(rButton9)
+                            .addComponent(rButtonIPS)
+                            .addComponent(rButtonIPA)
+                            .addComponent(rButtonBAHASA)
                             .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCari)
-                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRefresh2))
+                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -688,17 +724,17 @@ public class FrmAnggota extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rButtonPrActionPerformed
 
-    private void rButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rButton7MouseClicked
+    private void rButtonIPAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rButtonIPAMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_rButton7MouseClicked
+    }//GEN-LAST:event_rButtonIPAMouseClicked
 
-    private void rButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton7ActionPerformed
+    private void rButtonIPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButtonIPAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rButton7ActionPerformed
+    }//GEN-LAST:event_rButtonIPAActionPerformed
 
-    private void rButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton8ActionPerformed
+    private void rButtonIPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButtonIPSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rButton8ActionPerformed
+    }//GEN-LAST:event_rButtonIPSActionPerformed
 
     private void jMenuKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuKategoriActionPerformed
         // TODO add your handling code here
@@ -747,14 +783,9 @@ public class FrmAnggota extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuPetugasActionPerformed
 
-    private void btnRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh2ActionPerformed
+    private void rButtonBAHASAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButtonBAHASAActionPerformed
         // TODO add your handling code here:
-        tampilkanData();
-    }//GEN-LAST:event_btnRefresh2ActionPerformed
-
-    private void rButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rButton9ActionPerformed
+    }//GEN-LAST:event_rButtonBAHASAActionPerformed
 
     private void tblAnggotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblAnggotaKeyPressed
         // TODO add your handling code here:
@@ -765,6 +796,67 @@ public class FrmAnggota extends javax.swing.JFrame {
             simpanData();
         }
     }//GEN-LAST:event_tblAnggotaKeyPressed
+
+    private void txtNamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtAlamat.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtNamaKeyPressed
+
+    private void txtAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlamatKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtTelepon.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtAlamatKeyPressed
+
+    private void txtTeleponKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeleponKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonLk.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtTeleponKeyPressed
+
+    private void rButtonLkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonLkKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonPr.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_rButtonLkKeyPressed
+
+    private void rButtonPrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonPrKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonIPA.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_rButtonPrKeyPressed
+
+    private void rButtonIPAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonIPAKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonIPS.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_rButtonIPAKeyPressed
+
+    private void rButtonIPSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonIPSKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonBAHASA.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_rButtonIPSKeyPressed
+
+    private void rButtonBAHASAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonBAHASAKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            simpanData();
+        }
+    }//GEN-LAST:event_rButtonBAHASAKeyPressed
+
+    private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
+        // TODO add your handling code here:
+        cari(txtCari.getText());
+    }//GEN-LAST:event_txtCariKeyPressed
 
     /**
      * @param args the command line arguments
@@ -813,7 +905,6 @@ public class FrmAnggota extends javax.swing.JFrame {
     private javax.swing.JMenuItem Quit;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnRefresh2;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambahBaru;
     private javax.swing.ButtonGroup groupGender;
@@ -839,9 +930,9 @@ public class FrmAnggota extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JRadioButton rButton7;
-    private javax.swing.JRadioButton rButton8;
-    private javax.swing.JRadioButton rButton9;
+    private javax.swing.JRadioButton rButtonBAHASA;
+    private javax.swing.JRadioButton rButtonIPA;
+    private javax.swing.JRadioButton rButtonIPS;
     private javax.swing.JRadioButton rButtonLk;
     private javax.swing.JRadioButton rButtonPr;
     private javax.swing.JTable tblAnggota;

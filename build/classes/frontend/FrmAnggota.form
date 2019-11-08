@@ -173,7 +173,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                                      <Component id="rButton9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rButtonBAHASA" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -201,9 +201,9 @@
                                               <Component id="txtTelepon" pref="241" max="32767" attributes="0"/>
                                               <Component id="rButtonLk" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="rButton7" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="rButtonIPA" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Component id="rButton8" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="rButtonIPS" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                                           </Group>
@@ -214,15 +214,18 @@
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnRefresh2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCari" min="-2" pref="203" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCari" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jScrollPane2" alignment="1" pref="1090" max="32767" attributes="0"/>
-                          <Component id="btnHapus" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="txtCari" min="-2" pref="203" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnCari" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnHapus" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -270,9 +273,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rButton8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rButton7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rButtonIPS" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rButtonIPA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rButtonBAHASA" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -281,7 +284,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnCari" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCari" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="btnRefresh2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
@@ -349,6 +351,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNamaActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNamaKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSimpan">
@@ -424,6 +427,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCariActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCariKeyPressed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -459,6 +463,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTeleponActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTeleponKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -529,6 +534,7 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rButtonLkMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButtonLkActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rButtonLkKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rButtonLk.setActionCommand(&quot;Laki-laki&quot;);"/>
@@ -546,6 +552,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButtonPrActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rButtonPrKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rButtonLk.setActionCommand(&quot;Perempuan&quot;);"/>
@@ -559,7 +566,7 @@
         <Property name="text" type="java.lang.String" value="Kelas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rButton7">
+    <Component class="javax.swing.JRadioButton" name="rButtonIPA">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="groupStudi"/>
@@ -571,14 +578,15 @@
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rButton7MouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton7ActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rButtonIPAMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButtonIPAActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rButtonIPAKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rButtonLk.setActionCommand(&quot;Laki-laki&quot;);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rButton8">
+    <Component class="javax.swing.JRadioButton" name="rButtonIPS">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="groupStudi"/>
@@ -589,27 +597,14 @@
         <Property name="text" type="java.lang.String" value="IPS"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButtonIPSActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rButtonIPSKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rButtonLk.setActionCommand(&quot;Perempuan&quot;);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRefresh2">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Refresh"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefresh2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="rButton9">
+    <Component class="javax.swing.JRadioButton" name="rButtonBAHASA">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="groupStudi"/>
@@ -620,7 +615,8 @@
         <Property name="text" type="java.lang.String" value="BAHASA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton9ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButtonBAHASAActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rButtonBAHASAKeyPressed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rButtonLk.setActionCommand(&quot;Perempuan&quot;);"/>
@@ -646,6 +642,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlamatKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
