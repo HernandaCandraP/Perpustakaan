@@ -24,6 +24,7 @@ public class FrmPetugas extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+        txtNama.requestFocusInWindow();
     }
     
     public void kosongkanForm(){
@@ -109,6 +110,9 @@ public class FrmPetugas extends javax.swing.JFrame {
     }
     
     public void simpanData(){
+        if(txtNama.getText().equals("")||txtAlamat.getText().equals("")||txtTelepon.getText().equals("")||txtUsername.getText().equals("")||txtPassword.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
         Petugas A = new Petugas();
         ButtonModel gGender = groupGender.getSelection();
         if (gGender != null ) {
@@ -132,6 +136,7 @@ public class FrmPetugas extends javax.swing.JFrame {
         A.save();
         txtIdPetugas.setText(Integer.toString(A.getIdPetugas()));
         tampilkanData();
+        }
     }
     
     public void FrmAnggota(){
@@ -171,7 +176,6 @@ public class FrmPetugas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         rButtonLk = new javax.swing.JRadioButton();
         rButtonPr = new javax.swing.JRadioButton();
-        btnRefresh = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -227,6 +231,11 @@ public class FrmPetugas extends javax.swing.JFrame {
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
+            }
+        });
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaKeyPressed(evt);
             }
         });
 
@@ -309,6 +318,11 @@ public class FrmPetugas extends javax.swing.JFrame {
                 txtTeleponActionPerformed(evt);
             }
         });
+        txtTelepon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTeleponKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Telepon");
@@ -352,6 +366,11 @@ public class FrmPetugas extends javax.swing.JFrame {
                 rButtonLkActionPerformed(evt);
             }
         });
+        rButtonLk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonLkKeyPressed(evt);
+            }
+        });
 
         groupGender.add(rButtonPr);
         rButtonPr.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -361,12 +380,9 @@ public class FrmPetugas extends javax.swing.JFrame {
                 rButtonPrActionPerformed(evt);
             }
         });
-
-        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+        rButtonPr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rButtonPrKeyPressed(evt);
             }
         });
 
@@ -385,6 +401,11 @@ public class FrmPetugas extends javax.swing.JFrame {
                 txtUsernameActionPerformed(evt);
             }
         });
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyPressed(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -392,9 +413,19 @@ public class FrmPetugas extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
+        txtAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAlamatKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtAlamat);
 
         jButton1.setText("Cetak");
@@ -528,9 +559,7 @@ public class FrmPetugas extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnHapus)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(btnRefresh)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(98, 98, 98)
                                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnCari))
@@ -554,8 +583,7 @@ public class FrmPetugas extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnHapus)
                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCari)
-                        .addComponent(btnRefresh)))
+                        .addComponent(btnCari)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -626,13 +654,24 @@ public class FrmPetugas extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
-        int row = tblPetugas.getSelectedRow();
-        
+        try{
+            Object options[] = {"Ya", "Tidak"};
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+        if(result == JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel)tblPetugas.getModel();
+            int row = tblPetugas.getSelectedRow();
+            
         Petugas kat = new Petugas().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
         kat.delete();
         kosongkanForm();
         tampilkanData();
+        }
+        }catch (Exception e){
+           JOptionPane.showMessageDialog(null, "Pilih Petugas yang akan diHapus");
+        }
+        
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
@@ -707,11 +746,6 @@ public class FrmPetugas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuPetugasActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        tampilkanData();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
@@ -748,6 +782,55 @@ public class FrmPetugas extends javax.swing.JFrame {
         // TODO add your handling code here:
         cari(txtCari.getText());
     }//GEN-LAST:event_txtCariKeyPressed
+
+    private void txtNamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtAlamat.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtNamaKeyPressed
+
+    private void txtAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlamatKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtTelepon.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtAlamatKeyPressed
+
+    private void txtTeleponKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeleponKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonLk.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtTeleponKeyPressed
+
+    private void rButtonLkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonLkKeyPressed
+         // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            rButtonPr.requestFocusInWindow();
+        } 
+    }//GEN-LAST:event_rButtonLkKeyPressed
+
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtPassword.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtUsernameKeyPressed
+
+    private void rButtonPrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rButtonPrKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtUsername.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_rButtonPrKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            simpanData();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -804,7 +887,6 @@ public class FrmPetugas extends javax.swing.JFrame {
     private javax.swing.JMenuItem Quit;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambahBaru;
     private javax.swing.ButtonGroup groupGender;

@@ -5,6 +5,8 @@
  */
 package frontend;
 import backend.Anggota;
+import backend.Petugas;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
@@ -72,6 +74,70 @@ public class FrmAnggota extends javax.swing.JFrame {
         }
     }
 
+    public void simpanData(){
+        if(txtNama.getText().equals("")||txtAlamat.getText().equals("")||txtTelepon.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Field Harus Diisi Semua");
+        }else{
+        Anggota A = new Anggota();
+        ButtonModel gGender = groupGender.getSelection();
+        ButtonModel gStudi = groupStudi.getSelection();
+        if (gGender != null ) {
+            if (rButtonLk.isSelected()) {
+                Gender = rButtonLk.getText();
+            } else if (rButtonPr.isSelected()) {
+                Gender = rButtonPr.getText();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Jenis Kelamin belum diisi!! ");
+        }
+        
+        if (gStudi != null ) {
+            if (rButton7.isSelected()) {
+                Studi = rButton7.getText();
+            } else if (rButton8.isSelected()) {
+                Studi = rButton8.getText();
+            } else if (rButton9.isSelected()) {
+                Studi = rButton9.getText();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Kelas belum diisi!! ");
+        }
+        A.setIdAnggota(Integer.parseInt(txtIdAnggota.getText()));
+        A.setNama(txtNama.getText());
+        A.setAlamat(txtAlamat.getText());
+        A.setTelepon(txtTelepon.getText());
+        A.setGender(Gender);
+        A.setProgram_studi(Studi);
+        A.save();
+        txtIdAnggota.setText(Integer.toString(A.getIdAnggota()));
+        tampilkanData();
+        }
+    }
+    
+    public void editData(){
+        DefaultTableModel model = (DefaultTableModel)tblAnggota.getModel();
+        int row = tblAnggota.getSelectedRow();
+        
+        txtIdAnggota.setText(model.getValueAt(row, 0).toString());
+        txtNama.setText(model.getValueAt(row, 1).toString());
+        txtAlamat.setText(model.getValueAt(row, 2).toString());
+        txtTelepon.setText(model.getValueAt(row, 3).toString());
+        String gender = (model.getValueAt(row, 4).toString());
+            if(gender.equals(rButtonLk.getActionCommand())){
+                rButtonPr.setSelected(true);
+            } else {
+                rButtonLk.setSelected(true);
+            }
+        String studi = (model.getValueAt(row, 5).toString());
+            if(studi.equals(rButton7.getActionCommand())){
+                rButton7.setSelected(true);
+            }else if(studi.equals(rButton8.getActionCommand())){ 
+                rButton8.setSelected(true);
+            } else {
+                rButton9.setSelected(true);
+            }
+    }
+    
     public void FrmAnggota(){
         initComponents();
         tampilkanData();
@@ -227,6 +293,11 @@ public class FrmAnggota extends javax.swing.JFrame {
         tblAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblAnggotaMouseClicked(evt);
+            }
+        });
+        tblAnggota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblAnggotaKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tblAnggota);
@@ -468,7 +539,7 @@ public class FrmAnggota extends javax.swing.JFrame {
                                                     .addGap(30, 30, 30)
                                                     .addComponent(rButton8))
                                                 .addComponent(jScrollPane3)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnRefresh2)
@@ -476,9 +547,9 @@ public class FrmAnggota extends javax.swing.JFrame {
                                 .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
                             .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +595,7 @@ public class FrmAnggota extends javax.swing.JFrame {
                             .addComponent(btnCari)
                             .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRefresh2))
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,39 +628,7 @@ public class FrmAnggota extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        Anggota A = new Anggota();
-        ButtonModel gGender = groupGender.getSelection();
-        ButtonModel gStudi = groupStudi.getSelection();
-        if (gGender != null ) {
-            if (rButtonLk.isSelected()) {
-                Gender = rButtonLk.getText();
-            } else if (rButtonPr.isSelected()) {
-                Gender = rButtonPr.getText();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Jenis Kelamin belum diisi!! ");
-        }
-        
-        if (gStudi != null ) {
-            if (rButton7.isSelected()) {
-                Studi = rButton7.getText();
-            } else if (rButton8.isSelected()) {
-                Studi = rButton8.getText();
-            } else if (rButton9.isSelected()) {
-                Studi = rButton9.getText();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Kelas belum diisi!! ");
-        }
-        A.setIdAnggota(Integer.parseInt(txtIdAnggota.getText()));
-        A.setNama(txtNama.getText());
-        A.setAlamat(txtAlamat.getText());
-        A.setTelepon(txtTelepon.getText());
-        A.setGender(Gender);
-        A.setProgram_studi(Studi);
-        A.save();
-        txtIdAnggota.setText(Integer.toString(A.getIdAnggota()));
-        tampilkanData();
+        simpanData();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
@@ -604,13 +643,24 @@ public class FrmAnggota extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblAnggota.getModel();
-        int row = tblAnggota.getSelectedRow();
+        try{
+            Object options[] = {"Ya", "Tidak"};
+        int result = JOptionPane.showOptionDialog(this, "Apakah anda ingin Menghapus?", "Hapus",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[1]);
+        if(result == JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel)tblAnggota.getModel();
+            int row = tblAnggota.getSelectedRow();
         
         Anggota kat = new Anggota().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
         kat.delete();
         kosongkanForm();
         tampilkanData();
+        }
+        }catch (Exception e){
+           JOptionPane.showMessageDialog(null, "Pilih Anggota yang akan diHapus");
+        }
+        
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
@@ -619,27 +669,7 @@ public class FrmAnggota extends javax.swing.JFrame {
 
     private void tblAnggotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAnggotaMouseClicked
          // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblAnggota.getModel();
-        int row = tblAnggota.getSelectedRow();
-        
-        txtIdAnggota.setText(model.getValueAt(row, 0).toString());
-        txtNama.setText(model.getValueAt(row, 1).toString());
-        txtAlamat.setText(model.getValueAt(row, 2).toString());
-        txtTelepon.setText(model.getValueAt(row, 3).toString());
-        String gender = (model.getValueAt(row, 4).toString());
-            if(gender.equals(rButtonLk.getActionCommand())){
-                rButtonPr.setSelected(true);
-            } else {
-                rButtonLk.setSelected(true);
-            }
-        String studi = (model.getValueAt(row, 5).toString());
-            if(studi.equals(rButton7.getActionCommand())){
-                rButton7.setSelected(true);
-            }else if(studi.equals(rButton8.getActionCommand())){ 
-                rButton8.setSelected(true);
-            } else {
-                rButton9.setSelected(true);
-            }
+        editData();
     }//GEN-LAST:event_tblAnggotaMouseClicked
 
     private void txtTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeleponActionPerformed
@@ -725,6 +755,16 @@ public class FrmAnggota extends javax.swing.JFrame {
     private void rButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rButton9ActionPerformed
+
+    private void tblAnggotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblAnggotaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DefaultTableModel model = (DefaultTableModel)tblAnggota.getModel();
+            int row = tblAnggota.getSelectedRow();
+            editData();
+            simpanData();
+        }
+    }//GEN-LAST:event_tblAnggotaKeyPressed
 
     /**
      * @param args the command line arguments
