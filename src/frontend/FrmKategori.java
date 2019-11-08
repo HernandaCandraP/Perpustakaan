@@ -226,6 +226,11 @@ public class FrmKategori extends javax.swing.JFrame {
                 txtCariActionPerformed(evt);
             }
         });
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCariKeyPressed(evt);
+            }
+        });
 
         tblKategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -495,6 +500,7 @@ public class FrmKategori extends javax.swing.JFrame {
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtCariActionPerformed
 
     private void tblKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKategoriMouseClicked
@@ -579,9 +585,14 @@ public class FrmKategori extends javax.swing.JFrame {
     private void txtKeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeteranganKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            btnSimpan.requestFocusInWindow();
+        simpan();
         }
     }//GEN-LAST:event_txtKeteranganKeyPressed
+
+    private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
+        // TODO add your handling code here:
+        cari(txtCari.getText());
+    }//GEN-LAST:event_txtCariKeyPressed
 
     /**
      * @param args the command line arguments
