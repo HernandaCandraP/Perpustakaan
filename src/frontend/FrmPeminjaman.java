@@ -764,7 +764,7 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                     tglPinjam.requestFocusInWindow();
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Masukkan Dengan Format Angka");                
+                JOptionPane.showMessageDialog(null, "Masukkan dengan Format Angka");                
                 txtTotal.setText("");
             }
         }
