@@ -24,9 +24,9 @@ public class FrmTblBuku extends javax.swing.JFrame {
     }
     
     public void tampilkanData(){
-        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Total Buku"};
+        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun terbit", "Stock", "Loker"};
         ArrayList<Buku> list = new Buku().getAll();
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[8];
         
         tblBuku.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -38,15 +38,16 @@ public class FrmTblBuku extends javax.swing.JFrame {
             rowData[4] = list.get(i).getPenerbit();
             rowData[5] = list.get(i).getTahun_terbit();
             rowData[6] = list.get(i).getTotal();
+            rowData[7] = list.get(i).getLoker();
             
             ((DefaultTableModel)tblBuku.getModel()).addRow(rowData);
         }
     }
 
     public void cari(String keyword){
-        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun Terbit", "Total"};
+        String[] kolom = {"ID", "Kategori", "Judul", "Penulis", "Penerbit", "Tahun Terbit", "Total", "loker"};
         ArrayList<Buku> list = new Buku().search(keyword);
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[8];
         
         tblBuku.setModel(new DefaultTableModel(new Object[][] {}, kolom));
         
@@ -58,6 +59,7 @@ public class FrmTblBuku extends javax.swing.JFrame {
             rowData[4] = buku.getPenerbit();
             rowData[5] = buku.getTahun_terbit();
             rowData[6] = buku.getTotal();
+            rowData[7] = buku.getLoker();
             
             ((DefaultTableModel)tblBuku.getModel()).addRow(rowData);
         }
@@ -247,7 +249,7 @@ public class FrmTblBuku extends javax.swing.JFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        cari(txtCari.getText());
+            cari(txtCari.getText());
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
