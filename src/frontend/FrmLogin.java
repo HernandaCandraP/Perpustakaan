@@ -23,6 +23,24 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void cariPetugas(){
+        Peminjaman p = new Peminjaman();
+        ResultSet rs = DBHelper.selectQuery("Select * from Petugas where username = '" + txtusername.getText().toString() + "'");
+        try{
+            while(rs.next()){
+                p.getPetugas().setIdPetugas(rs.getInt("idpetugas"));
+                int idpetugas = rs.getInt("idpetugas");
+                
+                String SQL = "UPDATE users SET"
+                        +"  user = '" +idpetugas+ "'"
+                        +"  WHERE id = 1";
+                DBHelper.executeQuery(SQL);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+        
     public void login(){
         try {
             ResultSet rs = DBHelper.selectQuery("SELECT * FROM petugas where username='"+txtusername.getText() + "' and password='"+ txtpassword.getText() +"'");
@@ -33,6 +51,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
             
             if (baris ==1) {
+                cariPetugas();
                 new FrmPeminjaman().setVisible(true);
                 JOptionPane.showMessageDialog(null,"Berhasil Login");
                 dispose();

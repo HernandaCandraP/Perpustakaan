@@ -283,6 +283,20 @@ public class Peminjaman {
             e.printStackTrace();
         }
     }
+    
+    public void cariUser(String user){
+        ResultSet rs = DBHelper.selectQuery("Select idpetugas from Petugas where username = '" + user + "'");
+        try{
+            while(rs.next()){
+//                getPetugas().setUsername(rs.getString("username"));
+                getPetugas().setIdPetugas(rs.getInt("idpetugas"));
+                System.out.println(rs.getInt("idpetugas"));
+//                getPetugas().setNama(rs.getString("nama"));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     public void delete(){
         String sql = "Delete from peminjaman where idpeminjaman = '" + this.idpeminjaman + "'";
         DBHelper.executeQuery(sql);

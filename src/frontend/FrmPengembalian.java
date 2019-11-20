@@ -33,8 +33,10 @@ public class FrmPengembalian extends javax.swing.JFrame {
         kosongkan();
         tabelkosong();
         cariAnggota.requestFocusInWindow();
+        tglKembali.setDate(d);
     }
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date d = new Date();
     
     public void kosongkanForm(){
         this.idpeminjaman.setText("0");
@@ -57,14 +59,14 @@ public class FrmPengembalian extends javax.swing.JFrame {
     }
     
     public void tabelkosong(){
-        String[] kolom = {"Id Peminjaman","Id Buku", "Buku", "Total", "Tanggal Pinjam", "Tanggal Kembali", "Denda","Petugas"};
+        String[] kolom = {"Id Peminjaman","Id Buku", "Buku", "Total", "Tanggal Pinjam", "Tanggal Kembali", "Denda"};
         Object rowData[] = new Object[8];
         
         tabelData.setModel(new DefaultTableModel(new Object[][] {}, kolom));
     }
     
     public void cari(String keyword){
-        String[] kolom = {"Id Peminjaman","Id Buku", "Buku", "Total", "Tanggal Pinjam", "Tanggal Kembali", "Denda","Petugas"};
+        String[] kolom = {"Id Peminjaman","Id Buku", "Buku", "Total", "Tanggal Pinjam", "Tanggal Kembali", "Denda"};
         ArrayList<Peminjaman> list = new Peminjaman().search(keyword);
         Object rowData[] = new Object[8];
         
@@ -153,6 +155,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
         jMenuKategori = new javax.swing.JMenuItem();
         jMenuPeminjaman = new javax.swing.JMenuItem();
         jMenuPetugas = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         Quit = new javax.swing.JMenuItem();
 
@@ -350,6 +353,14 @@ public class FrmPengembalian extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuPetugas);
 
+        jMenuItem1.setText("Pengembalian");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar2.add(jMenu1);
 
         Edit.setText("Aksi");
@@ -374,24 +385,6 @@ public class FrmPengembalian extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(btnAng)
-                                .addGap(18, 18, 18)
-                                .addComponent(cariAng)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -428,7 +421,25 @@ public class FrmPengembalian extends javax.swing.JFrame {
                                     .addComponent(tglKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtHari, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnSimpanP))
-                        .addGap(196, 196, 196))))
+                        .addGap(196, 196, 196))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idpeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cariAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(btnAng)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cariAng)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,6 +692,12 @@ public class FrmPengembalian extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cariAnggotaKeyPressed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new FrmPengembalian().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -745,6 +762,7 @@ public class FrmPengembalian extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuBuku;
     private javax.swing.JMenuItem jMenuHome;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuKategori;
     private javax.swing.JMenuItem jMenuPeminjaman;
     private javax.swing.JMenuItem jMenuPetugas;
