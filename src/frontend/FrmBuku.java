@@ -165,6 +165,7 @@ public class FrmBuku extends javax.swing.JFrame {
         jMenuBuku = new javax.swing.JMenuItem();
         jMenuKategori = new javax.swing.JMenuItem();
         jMenuPeminjaman = new javax.swing.JMenuItem();
+        jMenuItemPengembalian = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         Quit = new javax.swing.JMenuItem();
 
@@ -386,6 +387,7 @@ public class FrmBuku extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Loker");
 
+        txtLoker.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLoker.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtLokerKeyPressed(evt);
@@ -469,6 +471,15 @@ public class FrmBuku extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuPeminjaman);
+
+        jMenuItemPengembalian.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemPengembalian.setText("Pengembalian");
+        jMenuItemPengembalian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPengembalianActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemPengembalian);
 
         jMenuBar2.add(jMenu1);
 
@@ -752,7 +763,11 @@ public class FrmBuku extends javax.swing.JFrame {
     private void txtJudulKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJudulKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            cmbKategori.requestFocusInWindow();
+            if (txtJudul.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan Judul");
+            }else{
+                cmbKategori.requestFocusInWindow();
+            }
         }
     }//GEN-LAST:event_txtJudulKeyPressed
 
@@ -773,28 +788,56 @@ public class FrmBuku extends javax.swing.JFrame {
     private void txtTerbitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTerbitKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            txtTotal.requestFocusInWindow();
+            String input = txtTerbit.getText();
+            if (input.matches("[0-9]*")) {
+                if (txtTerbit.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Masukkan Tahun Terbit");
+                }else{
+                     txtTotal.requestFocusInWindow();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Masukkan dengan Format Angka");                
+                txtTerbit.setText("");
+            }
         }
     }//GEN-LAST:event_txtTerbitKeyPressed
 
     private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            txtLoker.requestFocusInWindow();
+            String input = txtTotal.getText();
+            if (input.matches("[0-9]*")) {
+                if (txtTotal.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Masukkan Total Buku");
+                }else{
+                    txtLoker.requestFocusInWindow();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Masukkan dengan Format Angka");                
+                txtTotal.setText("");
+            }
         }
     }//GEN-LAST:event_txtTotalKeyPressed
 
     private void txtLokerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLokerKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            simpan();
+            if (txtLoker.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan Loker");
+            }else{
+                simpan();
+            }
         }
     }//GEN-LAST:event_txtLokerKeyPressed
 
     private void txtPenerbitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPenerbitKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            txtPenulis.requestFocusInWindow();
+            if (txtPenerbit.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Masukkan Judul");
+            }else{
+                txtPenulis.requestFocusInWindow();
+            }
         }
     }//GEN-LAST:event_txtPenerbitKeyPressed
 
@@ -802,6 +845,12 @@ public class FrmBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
         cari(txtCari.getText());
     }//GEN-LAST:event_txtCariKeyPressed
+
+    private void jMenuItemPengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPengembalianActionPerformed
+        // TODO add your handling code here:
+        new FrmPengembalian().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItemPengembalianActionPerformed
 
     /**
      * @param args the command line arguments
@@ -869,6 +918,7 @@ public class FrmBuku extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuBuku;
     private javax.swing.JMenuItem jMenuHome;
+    private javax.swing.JMenuItem jMenuItemPengembalian;
     private javax.swing.JMenuItem jMenuKategori;
     private javax.swing.JMenuItem jMenuPeminjaman;
     private javax.swing.JMenuItem jMenuPetugas;
