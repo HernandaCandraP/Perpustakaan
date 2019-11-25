@@ -14,7 +14,7 @@ import java.sql.*;
  */
 public class DBHelper {
     private static Connection koneksi;
-     public static void bukaKoneksi()     
+    public static Connection bukaKoneksi()     
      {
           if(koneksi == null){ 
               try{
@@ -28,6 +28,7 @@ public class DBHelper {
                   System.out.println("Connection error!");
               }   
           }
+        return null;
      }
      
       public static int insertQueryGetId(String query){ 
