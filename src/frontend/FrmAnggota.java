@@ -918,7 +918,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         try{
             com.mysql.jdbc.Connection c = (com.mysql.jdbc.Connection) koneksi;
             reportSource = System.getProperty("user.dir") + "/laporan/reportAnggota.jrxml";
-            reportDest = System.getProperty("user.dir") + "/laporan/laporan_produkkopi.jasper";
+            reportDest = System.getProperty("user.dir") + "/laporan/reportAnggota.jasper";
             
             JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null,c);
