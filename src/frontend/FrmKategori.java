@@ -22,7 +22,7 @@ public class FrmKategori extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
-        txtNama.requestFocusInWindow();
+        txtNama.requestFocusInWindow() ;
     }
     
     public void kosongkanForm(){
