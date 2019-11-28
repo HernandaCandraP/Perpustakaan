@@ -192,6 +192,7 @@ public class FrmPetugas extends javax.swing.JFrame {
         jMenuBuku = new javax.swing.JMenuItem();
         jMenuKategori = new javax.swing.JMenuItem();
         jMenuPeminjaman = new javax.swing.JMenuItem();
+        jMenuPengembalian = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         Quit = new javax.swing.JMenuItem();
 
@@ -490,6 +491,15 @@ public class FrmPetugas extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuPeminjaman);
+
+        jMenuPengembalian.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK));
+        jMenuPengembalian.setText("Peminjaman");
+        jMenuPengembalian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPengembalianActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuPengembalian);
 
         jMenuBar2.add(jMenu1);
 
@@ -832,6 +842,12 @@ public class FrmPetugas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 
+    private void jMenuPengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPengembalianActionPerformed
+        // TODO add your handling code here:
+        new FrmPengembalian().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuPengembalianActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -908,6 +924,7 @@ public class FrmPetugas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuHome;
     private javax.swing.JMenuItem jMenuKategori;
     private javax.swing.JMenuItem jMenuPeminjaman;
+    private javax.swing.JMenuItem jMenuPengembalian;
     private javax.swing.JMenuItem jMenuPetugas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

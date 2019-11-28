@@ -5,17 +5,28 @@
  */
 package frontend;
 import backend.Anggota;
+import backend.Koneksi;
 import backend.Petugas;
 import java.awt.event.KeyEvent;
+import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mysql.jdbc.Connection;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author ASUS
  */
 public class FrmAnggota extends javax.swing.JFrame {
+    Connection koneksi;
     String Gender = "";
     String Studi ="";
     /**
@@ -25,6 +36,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+        koneksi = (Connection) Koneksi.getKoneksi("localhost","3306","root","","perpusproyek");
         txtNama.requestFocusInWindow();
     }
     
@@ -139,6 +151,19 @@ public class FrmAnggota extends javax.swing.JFrame {
             }
     }
     
+    public void cetakLaporan(){
+        try{
+            boolean complate = tblAnggota.print();
+            if(complate){
+                JOptionPane.showMessageDialog(null, "Sukses: ");
+            }else{
+                JOptionPane.showMessageDialog(null, "Gagal");
+            }
+        }catch(PrinterException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     public void FrmAnggota(){
         initComponents();
         tampilkanData();
@@ -183,6 +208,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAlamat = new javax.swing.JTextArea();
+        BtnCetak = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuHome = new javax.swing.JMenuItem();
@@ -191,6 +217,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         jMenuBuku = new javax.swing.JMenuItem();
         jMenuKategori = new javax.swing.JMenuItem();
         jMenuPeminjaman = new javax.swing.JMenuItem();
+        jMenuPengembalian = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         Quit = new javax.swing.JMenuItem();
 
@@ -449,6 +476,14 @@ public class FrmAnggota extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(txtAlamat);
 
+        BtnCetak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnCetak.setText("Cetak");
+        BtnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetakActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Menu");
 
         jMenuHome.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
@@ -504,6 +539,15 @@ public class FrmAnggota extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuPeminjaman);
+
+        jMenuPengembalian.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK));
+        jMenuPengembalian.setText("Pengembalian");
+        jMenuPengembalian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPengembalianActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuPengembalian);
 
         jMenuBar2.add(jMenu1);
 
@@ -585,7 +629,10 @@ public class FrmAnggota extends javax.swing.JFrame {
                                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnCari))
-                                    .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(BtnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnHapus)))))))
                 .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
@@ -641,7 +688,9 @@ public class FrmAnggota extends javax.swing.JFrame {
                             .addComponent(btnTambahBaru))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnHapus)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnCetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8))))
         );
 
@@ -858,6 +907,35 @@ public class FrmAnggota extends javax.swing.JFrame {
         cari(txtCari.getText());
     }//GEN-LAST:event_txtCariKeyPressed
 
+    private void BtnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakActionPerformed
+        // TODO add your handling code here:
+        //cetakLaporan();
+//        new FrmCetakAnggota().setVisible(true);
+//        dispose();  
+        String reportSource = null;
+        String reportDest = null;
+        
+        try{
+            com.mysql.jdbc.Connection c = (com.mysql.jdbc.Connection) koneksi;
+            reportSource = System.getProperty("user.dir") + "/laporan/reportAnggota.jrxml";
+            reportDest = System.getProperty("user.dir") + "/laporan/reportAnggota.jasper";
+            
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null,c);
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, reportDest);
+            JasperViewer.viewReport(jasperPrint,false);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_BtnCetakActionPerformed
+
+    private void jMenuPengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPengembalianActionPerformed
+         // TODO add your handling code here:
+        new FrmPengembalian().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuPengembalianActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -901,6 +979,7 @@ public class FrmAnggota extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCetak;
     private javax.swing.JMenu Edit;
     private javax.swing.JMenuItem Quit;
     private javax.swing.JButton btnCari;
@@ -924,6 +1003,7 @@ public class FrmAnggota extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuHome;
     private javax.swing.JMenuItem jMenuKategori;
     private javax.swing.JMenuItem jMenuPeminjaman;
+    private javax.swing.JMenuItem jMenuPengembalian;
     private javax.swing.JMenuItem jMenuPetugas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

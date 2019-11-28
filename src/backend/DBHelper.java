@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class DBHelper {
     private static Connection koneksi;
-     public static void bukaKoneksi()     
+    public static Connection bukaKoneksi()     
      {
           if(koneksi == null){ 
               try{
@@ -29,6 +29,7 @@ public class DBHelper {
                   JOptionPane.showMessageDialog(null, "Koneksi Error, hubungkan database");
               }   
           }
+        return null;
      }
      
       public static int insertQueryGetId(String query){ 
