@@ -31,7 +31,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 p.getPetugas().setIdPetugas(rs.getInt("idpetugas"));
                 int idpetugas = rs.getInt("idpetugas");
                 
-                String SQL = "UPDATE users SET"
+                String SQL = "UPDATE users SET "
                         +"  user = '" +idpetugas+ "'"
                         +"  WHERE id = 1";
                 DBHelper.executeQuery(SQL);
