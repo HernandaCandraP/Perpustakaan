@@ -139,7 +139,7 @@
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">3</span></p></td>
-  <td><p style="overflow: hidden; text-indent: 0px; "><img alt="" src="reportBuku.jasper_files/px" border="0"/></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
 </tr>
 <tr valign="top">
@@ -392,7 +392,7 @@
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">100</span></p></td>
-  <td><p style="overflow: hidden; text-indent: 0px; "><img alt="" src="reportBuku.jasper_files/px" border="0"/></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">4</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
 </tr>
 <tr valign="top">
@@ -438,7 +438,7 @@
   <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Prof. Dr. Hamka</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
-  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">77</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">70</span></p></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><img alt="" src="reportBuku.jasper_files/px" border="0"/></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
 </tr>
@@ -484,7 +484,7 @@
   <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Oh Su Hyang</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2018</span></p></td>
-  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">3</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">7</span></p></td>
   <td><p style="overflow: hidden; text-indent: 0px; "><img alt="" src="reportBuku.jasper_files/px" border="0"/></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
 </tr>
@@ -563,7 +563,7 @@
 <tr valign="top">
   <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">42</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
-  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Detective Conan</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Detective</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
   <td rowspan="3"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Elex Media Kompetindo</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
@@ -575,8 +575,7 @@
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
 </tr>
 <tr valign="top">
-  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 14px;"/></td>
-  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 14px;"/></td>
+  <td colspan="4"><img alt="" src="reportBuku.jasper_files/px" style="width: 181px; height: 14px;"/></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 14px;"/></td>
   <td colspan="5"><img alt="" src="reportBuku.jasper_files/px" style="width: 222px; height: 14px;"/></td>
 </tr>
@@ -589,7 +588,208 @@
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 48px;"/></td>
 </tr>
 <tr valign="top">
-  <td colspan="15"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 167px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+  <td colspan="13" style="background-color: #F0EFEF; ">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">43</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">ipa</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">air</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">nanda</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1999</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 32px;"/></td>
+  <td colspan="13">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">44</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">3333</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Sang Mahakarya</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Abyan</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">3</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="4"><img alt="" src="reportBuku.jasper_files/px" style="width: 181px; height: 14px;"/></td>
+  <td colspan="7"><img alt="" src="reportBuku.jasper_files/px" style="width: 305px; height: 14px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 32px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 48px;"/></td>
+  <td colspan="13" style="background-color: #F0EFEF; ">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">45</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
+  <td rowspan="3"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Abyan Mencari Cinta</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Maju Jaya Group</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Alfa93adv</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">8</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 14px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 14px;"/></td>
+  <td colspan="7"><img alt="" src="reportBuku.jasper_files/px" style="width: 305px; height: 14px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 16px;"/></td>
+  <td colspan="9"><img alt="" src="reportBuku.jasper_files/px" style="width: 398px; height: 16px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 48px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+  <td colspan="13">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">46</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">testing</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">gaya</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">alfa</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2019</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">21</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 48px;"/></td>
+  <td colspan="13" style="background-color: #F0EFEF; ">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">47</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 18px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Hernanda Mencari </span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 18px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Dewisada Community</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Faisal</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">2017</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">1</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 14px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 14px;"/></td>
+  <td colspan="7"><img alt="" src="reportBuku.jasper_files/px" style="width: 305px; height: 14px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="12"><img alt="" src="reportBuku.jasper_files/px" style="width: 555px; height: 16px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 48px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="15"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 3px;"/></td>
 </tr>
 <tr valign="top">
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
@@ -614,7 +814,7 @@
 <tr valign="top">
   <td colspan="3"><img alt="" src="reportBuku.jasper_files/px" style="width: 433px; height: 1px;"/></td>
   <td rowspan="2" style=" vertical-align: middle;text-align: right;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">Page 1 of</span></p></td>
-  <td rowspan="2" style=" vertical-align: middle;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">&nbsp;1</span></p></td>
+  <td rowspan="2" style=" vertical-align: middle;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">&nbsp;2</span></p></td>
   <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 1px;"/></td>
 </tr>
 <tr valign="top">
@@ -636,6 +836,124 @@
 </tr>
 <tr valign="top">
   <td colspan="15"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 20px;"/></td>
+</tr>
+</table>
+<br/>
+<br/>
+
+<a name="JR_PAGE_ANCHOR_0_2"></a>
+<table style="width: 595px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0" bgcolor="white">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 3px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="14"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 27px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Id Buku</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 1px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Judul</span></p></td>
+  <td colspan="3"><img alt="" src="reportBuku.jasper_files/px" style="width: 107px; height: 1px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Penulis</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 1px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Tahun </span></p></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Total</span></p></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Loker</span></p></td>
+  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 23px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 17px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 19px; height: 17px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 24px; height: 17px;"/></td>
+  <td rowspan="2"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Penerbit</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 14px; height: 17px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 12px; height: 17px;"/></td>
+  <td colspan="2"><img alt="" src="reportBuku.jasper_files/px" style="width: 23px; height: 17px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="5"><img alt="" src="reportBuku.jasper_files/px" style="width: 201px; height: 1px;"/></td>
+  <td colspan="8"><img alt="" src="reportBuku.jasper_files/px" style="width: 325px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+  <td colspan="12" style="background-color: #F0EFEF; ">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 69px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 398px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 88px; height: 18px;"/></td>
+  <td><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #000000; font-size: 14px; line-height: 1; *line-height: normal;">Jodoh</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 398px; height: 18px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 18px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="14"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 729px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
+  <td colspan="12" style="border-top: 1px solid #999999; "><img alt="" src="reportBuku.jasper_files/px" border="0"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="14"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 4px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 24px;"/></td>
+  <td colspan="12" style="background-color: #000000; ">
+<table style="width: 555px; border-collapse: collapse" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 197px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 234px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 80px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 40px; height: 1px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="3"><img alt="" src="reportBuku.jasper_files/px" style="width: 433px; height: 1px;"/></td>
+  <td rowspan="2" style=" vertical-align: middle;text-align: right;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">Page 2 of</span></p></td>
+  <td rowspan="2" style=" vertical-align: middle;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">&nbsp;2</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 19px;"/></td>
+  <td rowspan="2" style=" vertical-align: middle;"><p style="overflow: hidden; text-indent: 0px; "><span style="font-family: Times New Roman; color: #FFFFFF; font-size: 10px; line-height: 1; *line-height: normal;">Thursday 28 November 2019</span></p></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 234px; height: 19px;"/></td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 19px;"/></td>
+</tr>
+<tr valign="top">
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 2px; height: 1px;"/></td>
+  <td colspan="4"><img alt="" src="reportBuku.jasper_files/px" style="width: 356px; height: 1px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="6"><img alt="" src="reportBuku.jasper_files/px" style="width: 555px; height: 3px;"/></td>
+</tr>
+</table>
+</td>
+  <td><img alt="" src="reportBuku.jasper_files/px" style="width: 20px; height: 24px;"/></td>
+</tr>
+<tr valign="top">
+  <td colspan="14"><img alt="" src="reportBuku.jasper_files/px" style="width: 595px; height: 20px;"/></td>
 </tr>
 </table>
 
