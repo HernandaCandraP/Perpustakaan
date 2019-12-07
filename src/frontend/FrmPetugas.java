@@ -789,8 +789,8 @@ public class FrmPetugas extends javax.swing.JFrame {
         
         try{
             com.mysql.jdbc.Connection c = (com.mysql.jdbc.Connection) koneksi;
-            reportSource = System.getProperty("user.dir") + "/laporan/reportAnggota.jrxml";
-            reportDest = System.getProperty("user.dir") + "/laporan/reportAnggota.jasper";
+            reportSource = System.getProperty("user.dir") + "/laporan/reportPetugas.jrxml";
+            reportDest = System.getProperty("user.dir") + "/laporan/reportPetugas.jasper";
             
             JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null,c);
