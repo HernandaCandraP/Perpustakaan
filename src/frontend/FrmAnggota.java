@@ -23,7 +23,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author ASUS
+ * @author Abyan
  */
 public class FrmAnggota extends javax.swing.JFrame {
     Connection koneksi;
@@ -477,6 +477,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtAlamat);
 
         BtnCetak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Print.png"))); // NOI18N
         BtnCetak.setText("Cetak");
         BtnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -630,7 +631,7 @@ public class FrmAnggota extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnCari))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(BtnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BtnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnHapus)))))))
                 .addGap(6, 6, 6))

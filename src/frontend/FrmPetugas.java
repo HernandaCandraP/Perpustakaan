@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package frontend;
+import backend.Koneksi;
 import backend.Petugas;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
@@ -11,11 +12,19 @@ import java.util.ArrayList;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mysql.jdbc.Connection;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Abyan
  */
 public class FrmPetugas extends javax.swing.JFrame {
+    Connection koneksi;
     String Gender = "";
     /**
      * Creates new form 
@@ -24,6 +33,7 @@ public class FrmPetugas extends javax.swing.JFrame {
         initComponents();
         tampilkanData();
         kosongkanForm();
+        koneksi = (Connection) Koneksi.getKoneksi("localhost","3306","root","","perpusproyek");
         txtNama.requestFocusInWindow();
     }
     
@@ -124,8 +134,6 @@ public class FrmPetugas extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Jenis Kelamin belum diisi!! ");
         }
-        
-        
         A.setIdPetugas(Integer.parseInt(txtIdPetugas.getText()));
         A.setNama(txtNama.getText());
         A.setAlamat(txtAlamat.getText());
@@ -429,6 +437,8 @@ public class FrmPetugas extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(txtAlamat);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Print.png"))); // NOI18N
         jButton1.setText("Cetak");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -595,12 +605,8 @@ public class FrmPetugas extends javax.swing.JFrame {
                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnCari)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -622,15 +628,17 @@ public class FrmPetugas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSimpan)
-                            .addComponent(btnTambahBaru))
-                        .addGap(39, 39, 39))))
+                            .addComponent(btnTambahBaru))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(30, 30, 30))
         );
 
         rButtonLk.setActionCommand("Laki-laki");
@@ -776,15 +784,21 @@ public class FrmPetugas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String reportSource = null;
+        String reportDest = null;
+        
         try{
-            boolean complate = tblPetugas.print();
-            if(complate){
-                JOptionPane.showMessageDialog(null, "Sukses: ");
-            }else{
-                JOptionPane.showMessageDialog(null, "Gagal");
-            }
-        }catch(PrinterException e){
-            JOptionPane.showMessageDialog(null, e);
+            com.mysql.jdbc.Connection c = (com.mysql.jdbc.Connection) koneksi;
+            reportSource = System.getProperty("user.dir") + "/laporan/reportAnggota.jrxml";
+            reportDest = System.getProperty("user.dir") + "/laporan/reportAnggota.jasper";
+            
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null,c);
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, reportDest);
+            JasperViewer.viewReport(jasperPrint,false);
+            
+        }catch(Exception e){
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
